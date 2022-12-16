@@ -19,11 +19,14 @@ public class TodayServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		LocalDate date = LocalDate.now();
-		DateTimeFormatter today = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+		String today = dtf.format(date);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		out.println("<html><body>");
 		out.println("今日は" + today + "です。");
+		out.println("</body></html>");
 	}
 
 }

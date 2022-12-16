@@ -1,19 +1,19 @@
 
-ƒpƒbƒP[ƒW toba
-ƒNƒ‰ƒX Saicoro
+ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ toba
+ã‚¯ãƒ©ã‚¹ Saicoro
 ----------------
-ƒtƒB[ƒ‹ƒh eye : int
-ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-  eye‚Ì–Ú‚ðŒˆ’èi‚P`‚Uj
-ƒƒ\ƒbƒh getEye()
+ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ eye : int
+ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+  eyeã®ç›®ã‚’æ±ºå®šï¼ˆï¼‘ã€œï¼–ï¼‰
+ãƒ¡ã‚½ãƒƒãƒ‰ getEye()
 ------------------
 
 saicoko.jsp
-toba.Saicoro ‚ðƒCƒ“ƒ|[ƒg
+toba.Saicoro ã‚’ã‚¤ãƒ³ãƒãƒ¼ãƒˆ
 
-Saicoro ƒCƒ“ƒXƒ^ƒ“ƒXì¬
-me = getEye() ƒƒ\ƒbƒh‚Å–Ú‚ðŽæ“¾B
-me‚ªŠï” -- ”¼‚Å‚·B
-    ‹ô” -- ’š‚Å‚·B
+Saicoro ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ä½œæˆ
+me = getEye() ãƒ¡ã‚½ãƒƒãƒ‰ã§ç›®ã‚’å–å¾—ã€‚
+meãŒå¥‡æ•° -- åŠã§ã™ã€‚
+    å¶æ•° -- ä¸ã§ã™ã€‚
     
 
