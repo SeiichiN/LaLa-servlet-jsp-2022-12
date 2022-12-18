@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +19,11 @@ public class FormSampleServlet extends HttpServlet {
 		String _gender = request.getParameter("gender");
 		int gender = Integer.parseInt(_gender);
 		
-		System.out.println("name:" + name);
-		System.out.println("gender:" + gender);
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<html><body>");
+		out.println("name:" + name);
+		out.println("gender:" + gender);
+		out.println("</body></html>");
 	}
 }
