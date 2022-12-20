@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>練習5-1</h1>
-	<form action="/lesson5/" method="post">
+	<form action="/lesson5/Ex5_1" method="post">
 	  名前：<br>
 	  <input type="text" name="name"><br>
 	  <input type="submit" value="登録">
