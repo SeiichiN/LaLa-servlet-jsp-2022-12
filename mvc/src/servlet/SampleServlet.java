@@ -1,10 +1,10 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,12 +24,11 @@ public class SampleServlet extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日");
 		String today = sdf.format(date);
 		
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>スッキリ占い</title></head>");
-		out.println("<body>");
-		out.println("<p>" + today + "の運勢は「" + luck + "」です。");
-		out.println("</body></html>");
+		String url = "/WEB-INF/jsp/today.jsp";
+		RequestDispatcher dispatcher =
+				request.getRequestDispatcher(url);
+		dispatcher.forward(request, response);
+
 	}
 
 }
