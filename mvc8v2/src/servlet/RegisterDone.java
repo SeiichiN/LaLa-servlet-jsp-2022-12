@@ -22,8 +22,12 @@ public class RegisterDone extends HttpServlet {
 		User registerUser 
 		    = (User) session.getAttribute("registerUser");
 		RegisterUserLogic logic = new RegisterUserLogic();
-		logic.execute(registerUser);
+		String errMsg = null;
+		if (! logic.execute(registerUser)) {
+			errMsg = "登録に失敗しました。";
+		}
 		session.removeAttribute("registerUser");
+		request.setAttribute("errMsg", errMsg);
 		
 		String path = "/WEB-INF/jsp/registerDone.jsp";
 

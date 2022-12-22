@@ -9,9 +9,10 @@ String sessionId = (String) session.getAttribute("sessionId");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>セッションスコープ</title>
 </head>
 <body>
+	<h1>fruit2.jsp</h1>
 	<p><%= fruit.getName() %>の値段は、
 	   <%= fruit.getPrice() %>です。</p>
 	<p>sessionId: <%=sessionId %></p>

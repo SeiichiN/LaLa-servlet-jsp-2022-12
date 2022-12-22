@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String errMsg = (String) request.getAttribute("errMsg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +11,9 @@
 </head>
 <body>
 	<p>登録完了しました</p>
-	<a href="/mvc8v2/RegisterUser">もどる</a>
+	<% if (errMsg != null) { %>
+		<p><%= errMsg %></p>
+	<% } %>
+	<a href="/mvc8v2/RegisterUser">戻る</a>
 </body>
 </html>

@@ -24,7 +24,12 @@ public class RegisterConfirm extends HttpServlet {
 		User registerUser = new User(id, name, pass);
 		// jspにわたすためセッションに保存(そのあとも使う)
 		HttpSession session = request.getSession();
+		String sessionId = session.getId();
+		session.setMaxInactiveInterval(10);
+		Integer intervalTime = session.getMaxInactiveInterval();
 		session.setAttribute("registerUser", registerUser);
+		session.setAttribute("sessionId", sessionId);
+		session.setAttribute("intervalTime", intervalTime);
 		
 		String url = "/WEB-INF/jsp/registerConfirm.jsp";
 		RequestDispatcher dispatcher =
