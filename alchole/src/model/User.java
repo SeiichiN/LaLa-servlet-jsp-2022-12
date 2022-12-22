@@ -3,9 +3,9 @@ package model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-	String name;
-	int age;
-	String text;
+	private String name;
+	private int age;
+	private String text;
 	
 	public User () {}
 	public User(String name, int age) {
@@ -30,5 +30,4 @@ public class User implements Serializable {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
 }

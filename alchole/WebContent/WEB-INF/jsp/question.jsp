@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>alchole</title>
+<title>アルコール</title>
 </head>
 <body>
 	<h1>アルコール</h1>

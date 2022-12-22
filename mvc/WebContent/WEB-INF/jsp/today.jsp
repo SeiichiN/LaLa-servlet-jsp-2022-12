@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="model.Uranai" %>
 <%
-String today = "12月XX日";
-String luck = "ふつう";
+Uranai u = (Uranai) request.getAttribute("kekka");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,6 +12,6 @@ String luck = "ふつう";
 </head>
 <body>
 	<h1>スッキリ占い</h1>
-	<p><%= today %>の運勢は <%= luck %></p>
+	<p><%= u.getToday() %>の運勢は <%= u.getLuck() %></p>
 </body>
 </html>

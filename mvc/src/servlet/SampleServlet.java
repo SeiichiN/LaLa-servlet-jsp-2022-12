@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Uranai;
+
 @WebServlet("/SampleServlet")
 public class SampleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +25,9 @@ public class SampleServlet extends HttpServlet {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日");
 		String today = sdf.format(date);
+		
+		Uranai uranai = new Uranai(luck, today);
+		request.setAttribute("kekka", uranai);
 		
 		String url = "/WEB-INF/jsp/today.jsp";
 		RequestDispatcher dispatcher =

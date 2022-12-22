@@ -2,17 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
 <%
-User user = (User)request.getAttribute("user");
+User user = (User) request.getAttribute("user");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>alchole</title>
 </head>
 <body>
 	<h1>アルコール</h1>
 	<p><%= user.getText() %>
+=======
+<title>アルコール</title>
+</head>
+<body>
+	<h1>アルコール</h1>
+	<p><%= user.getText() %></p>
+>>>>>>> main
 	<p><a href="/alchole/ask">もどる</a></p>
 </body>
 </html>
