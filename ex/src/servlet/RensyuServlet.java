@@ -24,7 +24,7 @@ public class RensyuServlet extends HttpServlet {
 		} else {
 			RequestDispatcher dispatcher =
 					request.getRequestDispatcher
-				    ("/WEB-INF/jsp/forwarded.jsp");
+				    ("/forwarded.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
