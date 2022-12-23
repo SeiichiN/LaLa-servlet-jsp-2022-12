@@ -3,6 +3,7 @@ package ex;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +16,8 @@ public class FruitServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Fruit fruit = new Fruit("いちご", 700);
-		request.setAttribute("fruit", fruit);
+		ServletContext application = this.getServletContext();
+		application.setAttribute("fruit", fruit);
 		String url = "/WEB-INF/ex/fruit.jsp";
 		RequestDispatcher d =
 				request.getRequestDispatcher(url);

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="ex.Fruit" %>
 <%
-Fruit fruit = (Fruit) request.getAttribute("fruit");
+Fruit fruit = (Fruit) application.getAttribute("fruit");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,6 +12,6 @@ Fruit fruit = (Fruit) request.getAttribute("fruit");
 </head>
 <body>
 	<p><%= fruit.getName() %>の値段は、
-	   <%= fruit.getPrice() %>です。</p>
+	   <%= fruit.getPrice() %>円です。</p>
 </body>
 </html>
