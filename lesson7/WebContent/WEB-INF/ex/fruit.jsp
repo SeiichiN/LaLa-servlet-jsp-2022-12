@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="ex.Fruit" %>
 <%
-Fruit fruit = (Fruit) session.getAttribute("fruit");
-String sessionId = (String) session.getAttribute("sessionId");
+Fruit fruit = (Fruit) application.getAttribute("fruit");
 %>
 <!DOCTYPE html>
 <html>
@@ -13,8 +12,6 @@ String sessionId = (String) session.getAttribute("sessionId");
 </head>
 <body>
 	<p><%= fruit.getName() %>の値段は、
-	   <%= fruit.getPrice() %>です。</p>
-	<p>sessionId: <%=sessionId %></p>
-	<p><a href="/lesson7/FruitServlet">再読込</a></p>
+	   <%= fruit.getPrice() %>円です。</p>
 </body>
 </html>
