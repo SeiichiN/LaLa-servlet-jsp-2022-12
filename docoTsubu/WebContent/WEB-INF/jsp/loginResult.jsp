@@ -13,9 +13,12 @@ User loginUser = (User) session.getAttribute("loginUser");
 <body>
 	<h1>どこつぶログイン</h1>
 	<% if (loginUser != null) { %>
-		<p>成功</p>
+		<p>ログインに成功しました</p>
+		<p>ようこそ<%= loginUser.getName() %>さん</p>
+		<a href="/docoTsubu/Main">つぶやき投稿・閲覧へ</a>
 	<% } else { %>
-		<p>失敗</p>
+		<p>ログインに失敗しました</p>
+		<a href="/docoTsubu/">TOPへ</a>
 	<% } %>
 </body>
 </html>
