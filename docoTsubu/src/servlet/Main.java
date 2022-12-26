@@ -24,12 +24,13 @@ public class Main extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = this.getServletContext();
 		@SuppressWarnings("unchecked")
-		List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
+		List<Mutter> mutterList =
+				(List<Mutter>) application.getAttribute("mutterList");
 		if (mutterList == null) {
 			mutterList = new ArrayList<>();
 			application.setAttribute("mutterList", mutterList);
 		}
-		
+		// ログインしていなくても、ここにはアクセス可能
 		HttpSession session = request.getSession();
 		User loginUser = (User) session.getAttribute("loginUser");
 		if (loginUser == null) {
@@ -40,7 +41,7 @@ public class Main extends HttpServlet {
 					("/WEB-INF/jsp/main.jsp");
 			dispatcher.forward(request, response);
 		}
-	}
+	}  // doGet end
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -49,8 +50,8 @@ public class Main extends HttpServlet {
 		if (text != null && text.length() != 0) {
 			ServletContext application = this.getServletContext();
 			@SuppressWarnings("unchecked")
-			List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
-			
+			List<Mutter> mutterList = 
+					(List<Mutter>) application.getAttribute("mutterList");
 			HttpSession session = request.getSession();
 			User loginUser = (User) session.getAttribute("loginUser");
 			
@@ -60,13 +61,12 @@ public class Main extends HttpServlet {
 			
 			application.setAttribute("mutterList", mutterList);
 		} else {
-			request.setAttribute("errorMsg", "つぶやきが入力されていません");
+			String errorMsg = "つぶやきが入力されていません";
+			request.setAttribute("errorMsg", errorMsg);
 		}
-		
 		RequestDispatcher dispatcher =
 				request.getRequestDispatcher
 				("/WEB-INF/jsp/main.jsp");
 		dispatcher.forward(request, response);
-	}	
-
+	}
 }

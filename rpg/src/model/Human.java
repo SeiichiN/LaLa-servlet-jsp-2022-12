@@ -20,23 +20,16 @@ public abstract class Human {
 	}
 	
 	public String toString() {
-		String _hp = "*";
-		for (int i = 0; i < this.hp / 10; i++) {
-			_hp = _hp + "*";
-		}
-		return this.name + ":" + this.hp + " " + _hp;
+		return this.name + " hp:" + this.hp;
 	}
 	
 	public String attack(Monster m) {
-		String resultText = m.getName() + "に対する攻撃";
+		String text1 = m.getName() + "を攻撃します。";
 		// int damage = new Random().nextInt(this.attackHp + 1);
 		int damage = (int)(Math.random() * (this.attackHp + 1));
-		String damageText = "";
-		for (int i = 0; i <= damage / 5; i++) {
-			damageText += "X";
-		}
 		m.setHp(m.getHp() - damage);
-		return resultText + damageText + " " + m.getName() + "に" + damage + "のダメージを与えた。";
+		String text2 = m.getName() + "に" + damage + "のダメージを与えた。";
+		return text1 + text2;
 	}
 
 	public void attack(List<Monster> mList) {

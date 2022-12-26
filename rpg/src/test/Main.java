@@ -39,7 +39,6 @@ public class Main {
 				}
 			}
 			if (hList.isEmpty()) { break; }
-
 			// ヒューマンの攻撃
 			System.out.println("--- 桃太郎たちの攻撃 ---");
 			for (Human h : hList) {
@@ -84,7 +83,7 @@ public class Main {
 //	}
 	
 	public static String sentaku() {
-		System.out.print
+		System.out.println
 		  ("どうする？ x:攻撃 n:逃げる > ");
 		String cmd = new Scanner(System.in).nextLine().toLowerCase();
 		return cmd;

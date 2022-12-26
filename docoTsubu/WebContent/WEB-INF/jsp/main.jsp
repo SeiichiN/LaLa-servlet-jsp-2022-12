@@ -5,8 +5,8 @@
 <%@ page import="java.util.List" %>
 <%
 User loginUser = (User) session.getAttribute("loginUser");
-@SuppressWarnings("unchecked")
-List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
+List<Mutter> mutterList = 
+  (List<Mutter>) application.getAttribute("mutterList");
 String errorMsg = (String) request.getAttribute("errorMsg");
 %>
 <!DOCTYPE html>
@@ -18,8 +18,13 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 <body>
 	<h1>どこつぶメイン</h1>
 	<p>
+<<<<<<< HEAD
 	<%= loginUser.getName() %>さん、ログイン中
 	<a href="/docoTsubu/Logout">ログアウト</a>
+=======
+	  <%= loginUser.getName()%>さん、ログイン中
+	  <a href="/docoTsubu/Logout">ログアウト</a>
+>>>>>>> main
 	</p>
 	<p><a href="/docoTsubu/Main">更新</a></p>
 	<form action="/docoTsubu/Main" method="post">
@@ -30,7 +35,11 @@ String errorMsg = (String) request.getAttribute("errorMsg");
 		<p><%= errorMsg %></p>
 	<% } %>
 	<% for (Mutter mutter : mutterList) { %>
+<<<<<<< HEAD
 		<p><%= mutter.getUserName() %> : <%= mutter.getText() %></p>
+=======
+		<p><%=mutter.getUserName() %>:<%=mutter.getText() %></p>
+>>>>>>> main
 	<% } %>
 </body>
 </html>

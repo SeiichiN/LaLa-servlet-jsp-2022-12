@@ -1,7 +1,6 @@
 package model;
 
 public class Hero extends Human {
-
 	public Hero() {
 		this("ヒーロー");
 	}

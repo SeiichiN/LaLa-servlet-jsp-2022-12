@@ -16,15 +16,13 @@ public abstract class Monster {
 	private String name;
 	private int hp;
 	private int attackHp;
-
+	
 	public Monster() {
 		this("モンスター");
 	}
-
 	public Monster(String name) {
 		this(name, 100, 20);
 	}
-
 	public Monster(String name, int hp, int attackHp) {
 		this.name = name;
 		this.hp = hp;
@@ -32,27 +30,16 @@ public abstract class Monster {
 	}
 
 	public String toString() {
-		String _hp = "*";
-		for (int i = 0; i < this.hp / 10; i++) {
-			_hp = _hp + "*";
-		}
-		return this.name + ":" + this.hp + " " + _hp;
+		return this.name + " hp:" + this.hp;
 	}
-
+	
 	public String attack(Hero h) {
-		String resultText = "";
-		if (this.hp <= 0) {
-			return "";
-		}
-		resultText = resultText + this.name + " ==> " + h.getName() + " ";
+		String text1 = this.name + "が" + h.getName() + "を攻撃。";
 		// int damage = new Random().nextInt(this.attackHp + 1);
-		int damage = (int) (Math.random() * (this.attackHp + 1));
-		String damageText = "";
-		for (int i = 0; i <= damage / 5; i++) {
-			damageText += "X";
-		}
+		int damage = (int)(Math.random() * (this.attackHp + 1));
 		h.setHp(h.getHp() - damage);
-		return resultText + damageText + " " + damage;
+		String text2 = h.getName() + "に" + damage + "のダメージを与えた。";
+		return text1 + text2;
 	}
 	
 	/**
@@ -82,7 +69,6 @@ public abstract class Monster {
 	}
 	
 	public void run() {
-
 	}
 
 	public String getName() {

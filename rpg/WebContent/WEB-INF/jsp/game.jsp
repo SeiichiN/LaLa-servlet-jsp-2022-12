@@ -3,35 +3,34 @@
 <%@ page import="model.Hero" %>
 <%@ page import="model.Dragon" %>
 <%
-Hero hero = (Hero) session.getAttribute("hero");
-Dragon dragon = (Dragon) session.getAttribute("dragon");
+Hero hero = (Hero) application.getAttribute("hero");
+Dragon dragon = (Dragon) application.getAttribute("dragon");
 String dragonAttack = (String) request.getAttribute("dragonAttack");
 String heroAttack = (String) request.getAttribute("heroAttack");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>桃太郎</title>
+	<meta charset="UTF-8">
+	<title>桃太郎</title>
+	<style>
+		p { margin: 0; }
+	</style>
 </head>
 <body>
-	<h1>桃太郎とドラゴンとの戦い</h1>
-	<h2>ドラゴン</h2>
-	<p><%= dragon %> </p>
-
-	<h2>桃太郎</h2>
-	<p><%= hero %> </p>
-	
-	<h3>ドラゴンの攻撃</h3>
-	<p><%= dragonAttack %>
-	
-	<h3>ヒーローの攻撃</h3>
-	<p><%= heroAttack %>
-	
-	<h3>どうする？</h3>
-	<form action="/rpg/Game" method="post">
-		<input type="radio" name="sentaku" value="x">攻撃 ： 
-		<input type="radio" name="sentaku" value="n">逃げる  
+	<h1>桃太郎とやまたのおろち</h1>
+	<% if (heroAttack != null) { %>
+		<p><%= heroAttack %></p>
+	<% } %>
+	<% if (dragonAttack != null) { %>
+		<p><%= dragonAttack %></p>
+	<% } %>
+	<p><%= dragon %></p>
+	<p><%= hero %></p>
+	<p>どうする？</p>
+	<form action="/rpg/game" method="post">
+		<input type="radio" name="action" value="attack">攻撃する
+		<input type="radio" name="action" value="runaway">逃げる
 		<input type="submit" value="決定">
 	</form>
 </body>
