@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="ex.Fruit" %>
-<%
-Fruit fruit = (Fruit) application.getAttribute("fruit");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +8,8 @@ Fruit fruit = (Fruit) application.getAttribute("fruit");
 <title>Insert title here</title>
 </head>
 <body>
-	<p><%= fruit.getName() %>の値段は、
-	   <%= fruit.getPrice() %>円です。</p>
+	<p>
+	  <c:out value="${applicationScope.fruit.name}" />の値段は、
+	  <c:out value="${applicationScope.fruit.price}" />円です。</p>
 </body>
 </html>
