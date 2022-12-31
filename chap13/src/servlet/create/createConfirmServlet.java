@@ -30,7 +30,7 @@ public class createConfirmServlet extends HttpServlet {
 		String age = request.getParameter("age");
 		ParamEmp paramEmp = new ParamEmp(id, name, age);
 		ParamCheck paramCheck = new ParamCheck();
-		paramCheck.check(paramEmp, errorList);
+		paramCheck.validate(paramEmp, errorList);
 		
 		request.setAttribute("paramEmp", paramEmp);
 		String url = null;

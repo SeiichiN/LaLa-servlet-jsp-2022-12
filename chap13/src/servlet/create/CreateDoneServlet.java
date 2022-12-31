@@ -28,7 +28,7 @@ public class CreateDoneServlet extends HttpServlet {
 			msg = "登録できませんでした。";
 		}
 		request.setAttribute("msg", msg);
-		String url = "/WEB-INF/jsp/create/createDone.jsp";
+		String url = "/WEB-INF/jsp/create/createResult.jsp";
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 

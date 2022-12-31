@@ -7,7 +7,7 @@ import model.MyError;
 import model.ParamEmp;
 
 public class ParamCheck {
-	public void check(ParamEmp emp, List<MyError> errorList) {
+	public void validate(ParamEmp emp, List<MyError> errorList) {
 		checkId(emp.getId(), errorList);
 		checkName(emp.getName(), errorList);
 		checkAge(emp.getAge(), errorList);
