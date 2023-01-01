@@ -1,31 +1,20 @@
 @charset "UTF-8";
 
-.error {
-	color: red;
-}
-
-form {
-	width: 300px;
-}
-
-input[type="text"] {
-	border: none;
-	outline: none;
-	width: 100%;
+table th {
+  width: 58px;
 }
 
 table {
-	margin-bottom: 20px;
-	width: 100%;
+  width: 100%;
 }
 
-.btn-area {
-	text-align: right;
+form {
+  width: 300px;
 }
 
-input[type="submit"],
-.link-btn {
-	cursor: pointer;
-	width: 100px;
-	line-height: 24px;
+input[type="text"] {
+  border: none;
+  outline: none;
+  width: 100%;
 }
+

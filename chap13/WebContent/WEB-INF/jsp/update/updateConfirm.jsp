@@ -14,44 +14,38 @@
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 		<main class="center-layout">
 			<article>
-				<h1>新規社員登録</h1>
-				<c:if test="${not empty errorList}">
-					<ul>
-					<c:forEach var="error" items="${errorList}">
-						<li class="error">
-							<c:out value="${error.key}" /> :
-							<c:out value="${error.msg}" /> 
-						</li>
-					</c:forEach>
-					</ul>
-				</c:if>
+				<h1>社員情報更新・確認</h1>
+				<p>以下の内容で更新します。よろしいですか？</p>
 				<form method="post">
 					<table>
 						<tr>
-							<th>ID</th>
-							<td>
-								<input type="text" name="id" value="<c:out value="${paramEmp.id}" />">
+							<th class="no-border">ID</th>
+							<td class="no-border">
+								${paramEmp.id}
 							</td>
 						</tr>
 						<tr>
 							<th>名前</th>
 							<td>
-								<input type="text" name="name" value="<c:out value="${paramEmp.name}" />">
+								<c:out value="${paramEmp.name}" />
 							</td>
 						</tr>
 						<tr>
 							<th>年齢</th>
 							<td>
-								<input type="text" name="age" value="<c:out value="${paramEmp.age}" />">
+								<c:out value="${paramEmp.age}" />
 							</td>
 						</tr>
 					</table>
+					<input type="hidden" name="id" value="${paramEmp.id}">
+					<input type="hidden" name="name" value="${paramEmp.name}">
+					<input type="hidden" name="age" value="${paramEmp.age}">
+					
 					<div class="btn-area">
-						<a href="/chap13/employee"><button class="link-btn" type="button">キャンセル</button></a>
-						<input type="submit" class="submit-btn" value="確認" formaction="/chap13/createConfirm">
+						<input type="submit" class="link-btn" value="キャンセル" formaction="/chap13/edit">
+						<input type="submit" class="submit-btn" formaction="/chap13/updateDone" value="更新">
 					</div>
 				</form>
-				
 			</article>
 	
 			<jsp:include page="/WEB-INF/jsp/common/aside.jsp" />	

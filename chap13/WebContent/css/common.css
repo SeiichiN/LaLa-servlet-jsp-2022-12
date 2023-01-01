@@ -16,8 +16,24 @@ ul {
 	width: 700px;
 	margin: 0 auto;
 }
+
+.no-border {
+	border: none;
+}
+.no-background {
+	background-color: transparent;
+}
+.link-word {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 a {
 	color: #000;
+}
+
+.error {
+  color: red;
 }
 
 main {
@@ -74,8 +90,10 @@ footer {
 /*
  * 表のデザイン
  */
+
 table {
-	border-collapse: collapse;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 th, td {
@@ -84,6 +102,45 @@ th, td {
 }
 
 th {
-	text-align: left;
+  text-align: left;
 }
 
+.btn-area {
+	text-align: right;
+}
+
+.submit-btn,
+.link-btn {
+  cursor: pointer;
+  width: 100px;
+  line-height: 24px;
+}
+
+/*
+ * asideのデザイン
+ */
+aside h1 {
+  margin-bottom: 10px;
+}
+ aside li {
+ 	margin-bottom: 10px;
+ }
+ .search-form {
+ 	border: solid 1px #ddd;
+ }
+ .search-box {
+ 	width: calc(100% - 40px);
+ 	line-height: 36px;
+ 	border: none;
+ 	background-color: transparent;
+ }
+ .search-box:focus {
+ 	outline: none;
+ }
+ .search-img {
+ 	vertical-align: middle;
+ 	cursor: pointer;
+ }
+ .img-find {
+ 	width: 24px;
+ }

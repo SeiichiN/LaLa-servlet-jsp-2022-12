@@ -12,6 +12,11 @@ public class ParamCheck {
 		checkName(emp.getName(), errorList);
 		checkAge(emp.getAge(), errorList);
 	}
+	
+	public void updateValidate(ParamEmp emp, List<MyError> errorList) {
+		checkName(emp.getName(), errorList);
+		checkAge(emp.getAge(), errorList);
+	}
 
 	private void checkId(String id, List<MyError> errorList) {
 		nullCheck("ID", id, errorList);

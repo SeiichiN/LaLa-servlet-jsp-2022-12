@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>社員一覧</title>
+	<title>社員編集 - 社員管理システム</title>
 	<link href="/chap13/css/common.css" rel="stylesheet">
 	<link href="/chap13/css/create-page.css" rel="stylesheet">
 </head>
@@ -14,7 +14,7 @@
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 		<main class="center-layout">
 			<article>
-				<h1>新規社員登録</h1>
+				<h1>社員情報編集</h1>
 				<c:if test="${not empty errorList}">
 					<ul>
 					<c:forEach var="error" items="${errorList}">
@@ -28,10 +28,8 @@
 				<form method="post">
 					<table>
 						<tr>
-							<th>ID</th>
-							<td>
-								<input type="text" name="id" value="<c:out value="${paramEmp.id}" />">
-							</td>
+							<th class="no-border">ID</th>
+							<td class="no-border"><c:out value="${paramEmp.id}" /></td>
 						</tr>
 						<tr>
 							<th>名前</th>
@@ -46,9 +44,10 @@
 							</td>
 						</tr>
 					</table>
+					<input type="hidden" name="id" value="${paramEmp.id}">
 					<div class="btn-area">
 						<a href="/chap13/employee"><button class="link-btn" type="button">キャンセル</button></a>
-						<input type="submit" class="submit-btn" value="確認" formaction="/chap13/createConfirm">
+						<input type="submit" class="submit-btn" value="確認" formaction="/chap13/updateConfirm">
 					</div>
 				</form>
 				

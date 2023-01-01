@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>社員一覧</title>
 	<link href="/chap13/css/common.css" rel="stylesheet">
-	<link href="/chap13/css/create-page.css" rel="stylesheet">
+	<link href="/chap13/css/list-page.css" rel="stylesheet">
 </head>
 <body>
 	<div id="wrap">
@@ -42,14 +42,12 @@
 					
 					<div class="btn-area">
 						<input type="submit" class="link-btn" value="キャンセル" formaction="/chap13/create">
-						<input type="submit" formaction="/chap13/createDone" value="登録">
+						<input type="submit" class="submit-btn" formaction="/chap13/createDone" value="登録">
 					</div>
 				</form>
 			</article>
 	
-			<aside>
-				<div><a href="/chap13/create">新規社員登録</a></div>
-			</aside>	
+			<jsp:include page="/WEB-INF/jsp/common/aside.jsp" />	
 		</main>
 		<jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
 	</div><!-- #wrap -->

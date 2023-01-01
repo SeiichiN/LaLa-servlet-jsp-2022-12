@@ -7,51 +7,45 @@
 	<meta charset="UTF-8">
 	<title>社員一覧</title>
 	<link href="/chap13/css/common.css" rel="stylesheet">
-	<link href="/chap13/css/create-page.css" rel="stylesheet">
+<!-- 	<link href="/chap13/css/create-page.css" rel="stylesheet"> -->
 </head>
 <body>
 	<div id="wrap">
 		<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 		<main class="center-layout">
 			<article>
-				<h1>新規社員登録</h1>
-				<c:if test="${not empty errorList}">
-					<ul>
-					<c:forEach var="error" items="${errorList}">
-						<li class="error">
-							<c:out value="${error.key}" /> :
-							<c:out value="${error.msg}" /> 
-						</li>
-					</c:forEach>
-					</ul>
-				</c:if>
-				<form method="post">
+				<h1>社員情報削除・確認</h1>
+				<p>以下の社員情報を削除します。よろしいですか？</p>
+				<form>
 					<table>
 						<tr>
 							<th>ID</th>
 							<td>
-								<input type="text" name="id" value="<c:out value="${paramEmp.id}" />">
+								<c:out value="${emp.id}" />
 							</td>
 						</tr>
 						<tr>
 							<th>名前</th>
 							<td>
-								<input type="text" name="name" value="<c:out value="${paramEmp.name}" />">
+								<c:out value="${emp.name}" />
 							</td>
 						</tr>
 						<tr>
 							<th>年齢</th>
 							<td>
-								<input type="text" name="age" value="<c:out value="${paramEmp.age}" />">
+								<c:out value="${emp.age}" />
 							</td>
 						</tr>
 					</table>
+					<input type="hidden" name="id" value="${emp.id}">
+					<input type="hidden" name="name" value="${emp.name}">
+					
 					<div class="btn-area">
-						<a href="/chap13/employee"><button class="link-btn" type="button">キャンセル</button></a>
-						<input type="submit" class="submit-btn" value="確認" formaction="/chap13/createConfirm">
+						<input type="submit" class="link-btn" value="キャンセル" 
+						       formaction="/chap13/employee" formmethod="get">
+						<input type="submit" class="submit-btn" formaction="/chap13/deleteDone" value="削除" formmethod="post">
 					</div>
 				</form>
-				
 			</article>
 	
 			<jsp:include page="/WEB-INF/jsp/common/aside.jsp" />	
