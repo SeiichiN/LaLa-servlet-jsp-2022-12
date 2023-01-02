@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.img-pencil,
+.img-trash {
+	width: 16px;
+	padding: 5px 8px;
+}
+.img-btn {
+	padding: 0;
+}

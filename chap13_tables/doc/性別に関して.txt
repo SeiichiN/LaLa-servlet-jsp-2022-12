@@ -1,0 +1,14 @@
+参考URL
+
+(1) どのようにデータ化するか？
+システムで「性別」の情報を扱う前に知っておくべきこと
+https://qiita.com/aoshirobo/items/32deb45cb8c8b87d65a4
+
+(2) データをデータベースにもつべきか？
+性別カラムを1,2で用意するとき、1が男, 2が女だという情報をどこに持つか
+https://yaruki-strong-zero.hatenablog.jp/entry/type_code_definition_location
+
+結論
+0:不明 1:男性 2:女性 3:その他
+データベースに genderテーブルとしてもつ。
+

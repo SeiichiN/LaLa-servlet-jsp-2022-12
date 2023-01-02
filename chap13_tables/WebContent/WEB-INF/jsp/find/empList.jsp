@@ -6,8 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>社員一覧</title>
-	<link href="/chap13/css/common.css" rel="stylesheet">
-	<link href="/chap13/css/list-page.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/list-page.css" rel="stylesheet">
 </head>
 <body>
 	<div id="wrap">
@@ -22,7 +22,10 @@
 					<tr>
 						<th>ID</th>
 						<th>名前</th>
+						<th>性別</th>
 						<th>年齢</th>
+						<th>誕生日</th>
+						<th>部署</th>
 						<th class="no-border"></th>
 						<th class="no-border"></th>
 					</tr>
@@ -30,16 +33,19 @@
 					<tr>
 						<td>${emp.id}</td>
 						<td>${emp.name}</td>
-						<td>${emp.age}</td>
+						<td>${emp.gender.name}</td>
+						<td>${emp.birthday.age}</td>
+						<td>${emp.birthday.text}</td>
+						<td>${emp.dept.name}</td>
 						<td class="no-border img-btn">
-							<form action="/chap13/edit?id=${emp.id}" method="post">
+							<form action="${pageContext.request.contextPath}/edit?id=${emp.id}" method="post">
 								<button class="no-border no-background link-word" type="submit">
 									${img_pencil}
 								</button>
 							</form>
 						</td>
 						<td class="no-border img-btn">
-							<form action="/chap13/delete?id=${emp.id}" method="post">
+							<form action="${pageContext.request.contextPath}/delete?id=${emp.id}" method="post">
 								<button class="no-border no-background link-word" type="submit">
 									${img_trash}
 								</button>

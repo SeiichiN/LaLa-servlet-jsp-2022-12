@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+table th {
+  width: 58px;
+}
+
+table {
+  width: 100%;
+}
+
+form {
+  width: 500px;
+}
+
+input[type="text"] {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+

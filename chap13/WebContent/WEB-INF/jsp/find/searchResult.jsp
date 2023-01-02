@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-String img_pencil = "<img src='/chap13/img/pencil.png' alt='編集' class='img-pencil'>";
-String img_trash = "<img src='/chap13/img/trash.png' alt='削除' class='img-trash'>";
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,14 +35,14 @@ String img_trash = "<img src='/chap13/img/trash.png' alt='削除' class='img-tra
 							<td class="no-border img-btn">
 								<form action="/chap13/edit?id=${emp.id}" method="post">
 									<button class="no-border no-background link-word" type="submit">
-										<%= img_pencil %>
+										${img_pencil}
 									</button>
 								</form>
 							</td>
 							<td class="no-border img-btn">
 								<form action="/chap13/delete?id=${emp.id}" method="post">
 									<button class="no-border no-background link-word" type="submit">
-										<%= img_trash %>
+										${img_trash}
 									</button>
 								</form>
 							</td>
