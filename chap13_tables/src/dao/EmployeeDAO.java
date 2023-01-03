@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -129,7 +130,8 @@ public class EmployeeDAO {
 		String gid = rs.getString("gid");
 		String gname = rs.getString("gname");
 		Gender gender = new Gender(gid, gname);
-		String _birthday = rs.getString("birthday");
+		// String _birthday = rs.getString("birthday");  // これでもOK
+		Date _birthday = rs.getDate("birthday");
 		Birthday birthday = new Birthday(_birthday);
 		String did = rs.getString("did");
 		String dname = rs.getString("dname");

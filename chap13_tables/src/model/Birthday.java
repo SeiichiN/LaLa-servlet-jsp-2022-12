@@ -21,6 +21,28 @@ public class Birthday implements Serializable {
 		setAgeFromBirthday(text);
 	}
 	
+	public Birthday(Date date)  {
+		this.sqlDate = date;
+		setAgeFromDate(date);
+		this.text = date.toString();
+	}
+	
+	/**
+	 * sql.Date型から LocalDate型に変換し、年齢を求める。
+	 * @param date : LocalDate <br> 
+	 *                 データベースから取り出したカラムを想定。
+	 */
+	private void setAgeFromDate(Date date) {
+		LocalDate localBirth = date.toLocalDate();
+		LocalDate now = LocalDate.now();
+		Period p = Period.between(localBirth, now);
+		this.age = p.getYears();
+	}
+	
+	/**
+	 * 日付文字列から sqlDate と年齢を求める
+	 * @param text 日付文字列(正しい日付かどうかはわからない)。
+	 */
 	private void setAgeFromBirthday(String text) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Const.DATE_FORMAT);
 		try {
