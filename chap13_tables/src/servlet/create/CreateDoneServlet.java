@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.logic.CreateEmployeeLogic;
-import model.ParamEmp;
+import util.MyTool;
+import model.Employee;
 
 @WebServlet("/createDone")
 public class CreateDoneServlet extends HttpServlet {
@@ -19,10 +20,10 @@ public class CreateDoneServlet extends HttpServlet {
 		String gender_id = request.getParameter("gender_id");
 		String birthday = request.getParameter("birthday");
 		String dept_id = request.getParameter("dept_id");
-		ParamEmp paramEmp = new ParamEmp(name, gender_id, birthday, dept_id);
+		Employee employee = MyTool.makeEmp(name, gender_id, birthday, dept_id);
 		CreateEmployeeLogic logic = new CreateEmployeeLogic();
 		String msg = "";
-		if (logic.execute(paramEmp)) {
+		if (logic.execute(employee)) {
 			msg = name + "さんを登録しました。";
 		} else {
 			msg = name + "さんを登録できませんでした。";

@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.ParamEmp;
+import model.Employee;
+import util.MyTool;
 
 @WebServlet("/create")
 public class CreateEmployeeServlet extends HttpServlet {
@@ -26,8 +27,8 @@ public class CreateEmployeeServlet extends HttpServlet {
 		String gender_id = request.getParameter("gender_id");
 		String birthday = request.getParameter("birthday");
 		String dept_id = request.getParameter("dept_id");
-		ParamEmp paramEmp = new ParamEmp(name, gender_id, birthday, dept_id);
-		request.setAttribute("paramEmp", paramEmp);
+		Employee employee = MyTool.makeEmp(name, gender_id, birthday, dept_id);
+		request.setAttribute("emp", employee);
 		String url = "/WEB-INF/jsp/create/createEmp.jsp";
 		request.getRequestDispatcher(url).forward(request, response);
 	}

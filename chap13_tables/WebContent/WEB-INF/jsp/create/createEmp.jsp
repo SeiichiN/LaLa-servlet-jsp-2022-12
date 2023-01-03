@@ -30,20 +30,20 @@
 						<tr>
 							<th>名前</th>
 							<td>
-								<input type="text" name="name" value="<c:out value="${paramEmp.name}" />">
+								<input type="text" name="name" value="<c:out value="${emp.name}" />">
 							</td>
 						</tr>
 						<tr>
 							<th>性別</th>
 							<td>
 								<input type="radio" id="male" name="gender_id" value="1"
-								        ${paramEmp.gender_id == 1 ? 'checked' : ''}>
+								        ${emp.gender.id == 1 ? 'checked' : ''}>
 								<label for="male">男性</label><br>
 								<input type="radio" id="female" name="gender_id" value="2"
-								       ${paramEmp.gender_id == 2 ? 'checked' : ''}>
+								       ${emp.gender.id == 2 ? 'checked' : ''}>
 								<label for="female">女性</label><br>
 								<input type="radio" id="other" name="gender_id" value="3"
-								       ${paramEmp.gender_id == 3 ? 'checked' : ''}>
+								       ${emp.gender.id == 3 ? 'checked' : ''}>
 								<label for="other">その他</label>
 							</td>
 						</tr>
@@ -51,7 +51,7 @@
 							<th>誕生日</th>
 							<td>
 								<input type="text" name="birthday" placeholder="西暦年4桁-月2桁-日2桁"
-								       value="<c:out value="${paramEmp.birthday}" />">
+								       value="<c:out value="${emp.birthday.text}" />">
 							</td>
 						</tr>
 						<tr>
@@ -59,7 +59,14 @@
 							<td>
 								<select name="dept_id" class="dept">
 									<c:forEach var="dept" items="${deptList}">
-										<option value="${dept.id}">${dept.name}</option>
+										<c:choose>
+											<c:when test="${dept.id == emp.dept.id}">
+												<option value="${dept.id}" selected>${dept.name}</option>
+											</c:when>
+											<c:otherwise>
+												<option value="${dept.id}">${dept.name}</option>
+											</c:otherwise>
+										</c:choose>
 									</c:forEach>
 								</select>
 							</td>

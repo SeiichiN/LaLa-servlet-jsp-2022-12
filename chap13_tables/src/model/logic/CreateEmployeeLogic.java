@@ -1,10 +1,10 @@
 package model.logic;
 
 import dao.EmployeeDAO;
-import model.ParamEmp;
+import model.Employee;
 
 public class CreateEmployeeLogic {
-	public boolean execute(ParamEmp emp) {
+	public boolean execute(Employee emp) {
 		EmployeeDAO dao = new EmployeeDAO();
 		return dao.create(emp);
 	}

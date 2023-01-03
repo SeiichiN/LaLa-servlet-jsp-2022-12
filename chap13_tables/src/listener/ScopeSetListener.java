@@ -32,11 +32,6 @@ public class ScopeSetListener implements ServletContextListener {
     	GetDeptListLogic logic = new GetDeptListLogic();
     	List<Dept> deptList = logic.execute();
     	context.setAttribute("deptList", deptList);
-    	
-    	// 現在の id の値を取得する
-    	GetLastIdLogic logic2 = new GetLastIdLogic();
-    	Integer lastId = logic2.execute();
-    	context.setAttribute("lastId", lastId);
     }
 	
 }

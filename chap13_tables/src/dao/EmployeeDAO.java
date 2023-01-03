@@ -12,7 +12,6 @@ import model.Birthday;
 import model.Dept;
 import model.Employee;
 import model.Gender;
-import model.ParamEmp;
 
 public class EmployeeDAO {
 	private static int lastId;
@@ -59,15 +58,14 @@ public class EmployeeDAO {
 		return lastId;
 	}
 	
-	public boolean create(ParamEmp emp) {
-		Birthday birthday = new Birthday(emp.getBirthday());
+	public boolean create(Employee emp) {
 		try (Connection conn = DBConnect.connect()) {
 			PreparedStatement pStmt = 
 					conn.prepareStatement(SQL_CREATE, Statement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, emp.getName());
-			pStmt.setString(2, emp.getGender_id());
-			pStmt.setDate(3, birthday.getSqlDate());
-			pStmt.setString(4, emp.getDept_id());
+			pStmt.setString(2, emp.getGender().getId());
+			pStmt.setDate(3, emp.getBirthday().getSqlDate());
+			pStmt.setString(4, emp.getDept().getId());
 			int result = pStmt.executeUpdate();
 			if (result != 1) {
 				return false;
@@ -80,6 +78,7 @@ public class EmployeeDAO {
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {
 				EmployeeDAO.lastId = rs.getInt(1);
+				System.out.println("lastId-1: " + lastId);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

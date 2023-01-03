@@ -32,6 +32,8 @@ CREATE TABLE department (
   name VARCHAR(100)
 );
 
+
+
 INSERT INTO department
   (id, name)
 VALUES
@@ -41,7 +43,7 @@ VALUES
   ('d04', '開発部'),
   ('d05', '第二営業部');
 
-
+  
 --
 -- employeeテーブル
 --
@@ -50,7 +52,7 @@ DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(100),
-  gender CHAR(1),
+  gender_id CHAR(1),
   birthday DATE,
   dept_id CHAR(3)
 );
@@ -60,7 +62,7 @@ CREATE TABLE employee (
 -- 平易化のため今回はパス。
 
 INSERT INTO employee
-  (name, gender, birthday, dept_id)
+  (name, gender_id, birthday, dept_id)
 VALUES
   ('二階堂 ふみ', '2', '1994-09-21', 'd05'),
   ('染谷 翔太', '1', '1992-09-03', 'd04'),

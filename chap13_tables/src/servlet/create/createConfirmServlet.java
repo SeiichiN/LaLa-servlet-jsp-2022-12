@@ -10,18 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Employee;
 import model.MyError;
-import model.ParamEmp;
 import util.MyTool;
 import util.ParamCheck;
 
 @WebServlet("/createConfirm")
 public class createConfirmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MyError> errorList = new ArrayList<>();
@@ -29,11 +25,12 @@ public class createConfirmServlet extends HttpServlet {
 		String gender_id = request.getParameter("gender_id");
 		String birthday = request.getParameter("birthday");
 		String dept_id = request.getParameter("dept_id");
-		ParamEmp paramEmp = new ParamEmp(name, gender_id, birthday, dept_id);
+		Employee employee = MyTool.makeEmp(name, gender_id, birthday, dept_id);
+		// ParamEmp paramEmp = new ParamEmp(name, gender_id, birthday, dept_id);
 		ParamCheck paramCheck = new ParamCheck();
-		paramCheck.validate(paramEmp, errorList);
+		paramCheck.validate(employee, errorList);
 		
-		request.setAttribute("paramEmp", paramEmp);
+		request.setAttribute("emp", employee);
 		String url = null;
 		if (errorList.size() > 0) {
 			request.setAttribute("errorList", errorList);

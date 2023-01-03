@@ -5,10 +5,12 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import util.Const;
 
 public class Birthday implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private static final String DATE_FORMAT = "yyyy-MM-dd";
 	private String text;
 	private Date sqlDate;
 	private int age;
@@ -16,16 +18,20 @@ public class Birthday implements Serializable {
 	public Birthday() {}
 	public Birthday(String text) {
 		this.text = text;
-		this.age = getAgeFromBirthday(text);
+		setAgeFromBirthday(text);
 	}
 	
-	private int getAgeFromBirthday(String text) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_FORMAT);
-		LocalDate localBirth = LocalDate.parse(text, dtf);
-		this.sqlDate = Date.valueOf(localBirth);
-		LocalDate now = LocalDate.now();
-		Period p = Period.between(localBirth, now);
-		return p.getYears();
+	private void setAgeFromBirthday(String text) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Const.DATE_FORMAT);
+		try {
+			LocalDate localBirth = LocalDate.parse(text, dtf);
+			this.sqlDate = Date.valueOf(localBirth);
+			LocalDate now = LocalDate.now();
+			Period p = Period.between(localBirth, now);
+			this.age = p.getYears();
+		} catch (DateTimeParseException e) {
+			this.age = 0;
+		}
 	}
 	public String getText() {
 		return text;

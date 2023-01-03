@@ -1,5 +1,12 @@
 package util;
 
+import model.Birthday;
+import model.Dept;
+import model.Employee;
+import model.Gender;
+import model.logic.GetDeptByIdLogic;
+import model.logic.GetGenderByIdLogic;
+
 public class MyTool {
 	public static int parseInt(String param) {
 		int value = 0;
@@ -11,5 +18,12 @@ public class MyTool {
 		}
 		return value;
 	}
-
+	
+	public static Employee makeEmp(String name, String gender_id, String _birthday, String dept_id) {
+		Gender gender = new GetGenderByIdLogic().execute(gender_id);
+		Birthday birthday = new Birthday(_birthday);
+		Dept dept = new GetDeptByIdLogic().execute(dept_id);
+		Employee employee = new Employee(name, gender, birthday, dept);
+		return employee;
+	}
 }

@@ -1,14 +1,22 @@
 package test;
 
-import model.Birthday;
-import model.ParamEmp;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Employee;
+import model.MyError;
 import model.logic.CreateEmployeeLogic;
 import model.logic.GetLastIdLogic;
+import util.MyTool;
+import util.ParamCheck;
 
 public class CreateEmployeeTest {
 
 	public static void main(String[] args) {
-		ParamEmp emp = new ParamEmp("かぐや姫", "3", "1988-09-21", "d04");
+		Employee emp = MyTool.makeEmp("かぐや姫", "2", "1988-09-21", "d04");
+		List<MyError> errorList = new ArrayList<>();
+		ParamCheck paramCheck = new ParamCheck();
+		paramCheck.validate(emp, errorList);
 		CreateEmployeeLogic logic = new CreateEmployeeLogic();
 		if (logic.execute(emp)) {
 			System.out.println(emp.getName() + "の社員情報を保存しました。");

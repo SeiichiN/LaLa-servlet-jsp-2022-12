@@ -10,6 +10,14 @@ public class Employee implements Serializable {
 	private Birthday birthday;
 	private Dept dept;
 	
+	public Employee() {}
+	public Employee(String name, Gender gender, Birthday birthday, Dept dept) {
+		this.id = 0;
+		this.name = name;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.dept = dept;
+	}
 	public Employee(int id, String name, Gender gender, Birthday birthday, Dept dept) {
 		this.id = id;
 		this.name = name;
@@ -19,7 +27,7 @@ public class Employee implements Serializable {
 	}
 
 	public String toString() {
-		return id + ":" + name + ":" + gender.getName() + ":"
+		return name + ":" + gender.getName() + ":"
 				+ birthday.getAge() + ":" + birthday.getText() + ":"
 				+ dept.getName();
 	}
@@ -27,7 +35,7 @@ public class Employee implements Serializable {
 	public int getId() {
 		return id;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
