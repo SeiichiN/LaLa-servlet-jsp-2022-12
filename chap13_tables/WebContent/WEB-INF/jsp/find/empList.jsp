@@ -38,14 +38,16 @@
 						<td>${emp.birthday.text}</td>
 						<td>${emp.dept.name}</td>
 						<td class="no-border img-btn">
-							<form action="${pageContext.request.contextPath}/edit?id=${emp.id}" method="post">
+							<form action="${pageContext.request.contextPath}/edit" method="post">
+								<input type="hidden" name="id" value="${emp.id}">
 								<button class="no-border no-background link-word" type="submit">
 									${img_pencil}
 								</button>
 							</form>
 						</td>
 						<td class="no-border img-btn">
-							<form action="${pageContext.request.contextPath}/delete?id=${emp.id}" method="post">
+							<form action="${pageContext.request.contextPath}/delete" method="post">
+								<input type="hidden" name="id" value="${emp.id}">
 								<button class="no-border no-background link-word" type="submit">
 									${img_trash}
 								</button>

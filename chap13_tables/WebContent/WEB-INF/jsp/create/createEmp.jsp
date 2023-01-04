@@ -50,7 +50,7 @@
 						<tr>
 							<th>誕生日</th>
 							<td>
-								<input type="text" name="birthday" placeholder="西暦年4桁-月2桁-日2桁"
+								<input type="text" name="birthday" placeholder="0000-00-00"
 								       value="<c:out value="${emp.birthday.text}" />">
 							</td>
 						</tr>
@@ -59,14 +59,9 @@
 							<td>
 								<select name="dept_id" class="dept">
 									<c:forEach var="dept" items="${deptList}">
-										<c:choose>
-											<c:when test="${dept.id == emp.dept.id}">
-												<option value="${dept.id}" selected>${dept.name}</option>
-											</c:when>
-											<c:otherwise>
-												<option value="${dept.id}">${dept.name}</option>
-											</c:otherwise>
-										</c:choose>
+										<option value="${dept.id}"
+											<c:if test="${dept.id == emp.dept.id}">selected</c:if>
+										>${dept.name}</option>
 									</c:forEach>
 								</select>
 							</td>

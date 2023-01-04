@@ -55,6 +55,10 @@ public class EmployeeDAO {
 			+ " (name, gender_id, birthday, dept_id) "
 			+ "VALUES (?, ?, ?, ?)";
 	
+	private final String SQL_DELETE = "DELETE FROM employee "
+			+ "WHERE id = ?";
+
+	
 	public static int getLastId() {
 		return lastId;
 	}
@@ -88,6 +92,22 @@ public class EmployeeDAO {
 		return true;
 	}
 	
+	public boolean deleteById(int id) {
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_DELETE);
+			pStmt.setInt(1, id);
+			int result = pStmt.executeUpdate();
+			
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 	public List<Employee> findAll() {
 		List<Employee> empList= new ArrayList<>();
 		
