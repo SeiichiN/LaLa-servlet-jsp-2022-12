@@ -1,6 +1,5 @@
 package test;
 
-import dao.EmployeeDAO;
 import model.logic.GetLastIdLogic;
 
 public class GetLastIdTest {

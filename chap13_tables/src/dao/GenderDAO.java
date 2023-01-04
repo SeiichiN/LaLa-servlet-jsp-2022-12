@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Birthday;
-import model.Dept;
-import model.Employee;
 import model.Gender;
 
 public class GenderDAO {

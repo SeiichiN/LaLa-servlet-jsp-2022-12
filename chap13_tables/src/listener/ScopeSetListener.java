@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebListener;
 
 import model.Dept;
 import model.logic.GetDeptListLogic;
-import model.logic.GetLastIdLogic;
 
 @WebListener
 public class ScopeSetListener implements ServletContextListener {

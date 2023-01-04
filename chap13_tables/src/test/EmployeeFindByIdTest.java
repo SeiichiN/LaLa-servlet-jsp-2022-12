@@ -1,7 +1,5 @@
 package test;
 
-import java.util.List;
-
 import dao.EmployeeDAO;
 import model.Employee;
 

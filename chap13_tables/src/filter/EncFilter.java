@@ -13,6 +13,8 @@ import javax.servlet.http.HttpFilter;
 @WebFilter("/*")
 public class EncFilter extends HttpFilter implements Filter {
        
+	private static final long serialVersionUID = 1L;
+
 	public void destroy() {}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
