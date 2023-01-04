@@ -11,16 +11,22 @@ import java.util.List;
 import model.Employee;
 
 public class EmployeeDAO {
-	private final String JDBC_URL =
+	private final String JDBC_URL = 
 			"jdbc:h2:tcp://localhost/~/h2data/example";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
-
+	
+	/**
+	 * データベースのデータを全件取得する
+	 * @return
+	 *   Employeeのリスト
+	 */
 	public List<Employee> findAll() {
-		List<Employee> empList= new ArrayList<>();
+		// empList -- データの入れ物
+		List<Employee> empList = new ArrayList<>();
 		
-		try (Connection conn = DriverManager.getConnection(
-				JDBC_URL, DB_USER, DB_PASS)) {
+		try (Connection conn =
+				DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			String sql = "SELECT id, name, age FROM employee";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();

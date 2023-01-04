@@ -8,10 +8,10 @@
 <title>どこつぶ</title>
 </head>
 <body>
-	<h1>どこつぶﾒｲﾝ</h1>
+	<h1>どこつぶメイン</h1>
 	<p>
-		<c:out value="${loginUser.name}" /> さん、ログイン中。
-		<a href="/docoTsubu13/Logout">ログアウト</a>
+	  <c:out value="${loginUser.name}" />さん、ログイン中
+	  <a href="/docoTsubu13/Logout">ログアウト</a>
 	</p>
 	<p><a href="/docoTsubu13/Main">更新</a></p>
 	<form action="/docoTsubu13/Main" method="post">
@@ -19,13 +19,14 @@
 		<input type="submit" value="つぶやく">
 	</form>
 	<c:if test="${not empty errorMsg}">
-		<p style="color:red">${errorMsg}</p>
+		<p style="color:red;">${errorMsg}</p>
 	</c:if>
-	<c:forEach var="mutter" items="${mutterList}" >
+	<c:forEach var="mutter" items="${mutterList}">
 		<p>
-			<c:out value="${mutter.userName}" /> :
+			<c:out value="${mutter.userName}" /> ： 
 			<c:out value="${mutter.text}" />
-		</p>  
+		</p>
 	</c:forEach>
+	
 </body>
 </html>

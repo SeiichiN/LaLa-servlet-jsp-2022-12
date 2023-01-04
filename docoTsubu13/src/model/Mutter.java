@@ -1,8 +1,6 @@
 package model;
 
-import java.io.Serializable;
-
-public class Mutter implements Serializable {
+public class Mutter {
 	private int id;
 	private String userName;
 	private String text;
@@ -16,6 +14,10 @@ public class Mutter implements Serializable {
 		this.id = id;
 		this.userName = userName;
 		this.text = text;
+	}
+	
+	public String toString() {
+		return id + ": " + userName + ": " + text;
 	}
 
 	public String getUserName() {

@@ -11,8 +11,7 @@ import java.util.List;
 import model.Mutter;
 
 public class MutterDAO {
-	// クラス変数（フィールド） -- すべてのメソッドから参照できる
-	private final String JDBC_URL =
+	private final String JDBC_URL = 
 			"jdbc:h2:tcp://localhost/~/h2data/docoTsubu";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
@@ -20,12 +19,13 @@ public class MutterDAO {
 	public List<Mutter> findAll() {
 		List<Mutter> mutterList = new ArrayList<>();
 		
-		try (Connection conn = DriverManager.getConnection(
-				JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT id, name, text FROM mutter ORDER BY id DESC";
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = 
+					"SELECT id, name, text FROM mutter "
+					+ "ORDER BY id DESC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
-
+			
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String userName = rs.getString("name");
@@ -33,16 +33,21 @@ public class MutterDAO {
 				Mutter mutter = new Mutter(id, userName, text);
 				mutterList.add(mutter);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
+		
 		return mutterList;
-	}
-	
+	} // findAll() end
+
 	public boolean create(Mutter mutter) {
-		try (Connection conn = DriverManager.getConnection(
-				JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "INSERT INTO mutter (name, text) VALUES (?, ?)";
+		
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = 
+					"INSERT INTO mutter (name, text) "
+					+ "VALUES (?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, mutter.getUserName());
 			pStmt.setString(2, mutter.getText());
@@ -55,5 +60,6 @@ public class MutterDAO {
 			return false;
 		}
 		return true;
-	}
-}
+	}  // create() end
+	
+} // class end
