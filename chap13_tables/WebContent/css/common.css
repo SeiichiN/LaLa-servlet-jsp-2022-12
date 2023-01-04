@@ -90,10 +90,24 @@ footer {
 /*
  * 表のデザイン
  */
+.edit-form,
+.confirm-form {
+  width: 400px;
+}
+
+.edit-form input[type="text"] {
+  width: 100%;
+  border: none;
+  outline: none;
+}
 
 table {
   border-collapse: collapse;
   margin-bottom: 20px;
+}
+
+.confirm-table td {
+  width: 200px;
 }
 
 th, td {

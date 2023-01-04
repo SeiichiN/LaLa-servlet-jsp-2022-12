@@ -7,7 +7,6 @@
 	<meta charset="UTF-8">
 	<title>社員一覧</title>
 	<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/css/create-page.css" rel="stylesheet">
 </head>
 <body>
 	<div id="wrap">
@@ -25,12 +24,13 @@
 					</c:forEach>
 					</ul>
 				</c:if>
-				<form method="post">
+				<form class="edit-form">
 					<table>
 						<tr>
 							<th>名前</th>
 							<td>
-								<input type="text" name="name" value="<c:out value="${emp.name}" />">
+								<input type="text" name="name" 
+								       value="<c:out value="${emp.name}" />">
 							</td>
 						</tr>
 						<tr>
@@ -59,19 +59,20 @@
 							<td>
 								<select name="dept_id" class="dept">
 									<c:forEach var="dept" items="${deptList}">
-										<option value="${dept.id}"
-											<c:if test="${dept.id == emp.dept.id}">selected</c:if>
-										>${dept.name}</option>
+										<option value="${dept.id}" ${dept.id == emp.dept.id ? 'selected' : '' }>
+										${dept.name}
+										</option>
 									</c:forEach>
 								</select>
 							</td>
 						</tr>
 					</table>
 					<div class="btn-area">
-						<a href="${pageContext.request.contextPath}/list">
-						    <button class="link-btn" type="button">キャンセル</button>
-						</a>
-						<input type="submit" class="submit-btn" value="確認" 
+						<input type="submit" class="link-btn" value="キャンセル"
+						       formmethod="get"
+						       formaction="${pageContext.request.contextPath}/list">
+						<input type="submit" class="submit-btn" value="確認"
+						       formmethod="post" 
 						       formaction="${pageContext.request.contextPath}/createConfirm">
 					</div>
 				</form>
