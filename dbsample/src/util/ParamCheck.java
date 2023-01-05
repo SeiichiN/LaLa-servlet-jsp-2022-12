@@ -84,6 +84,16 @@ public class ParamCheck {
 		}
 	}
 	
+	/**
+	 * 列挙型ResolverStyle
+	 * https://docs.oracle.com/javase/jp/8/docs/api/java/time/format/ResolverStyle.html
+	 * 
+	 * Javaにおける日付文字列の書式チェック方法
+	 * https://qiita.com/i_learnin/items/0e90036b2d7f664a249d
+	 * 
+	 * @param dateText
+	 * @return
+	 */
 	public boolean isDate(String dateText) {
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern(DATE_PATTERN).withResolverStyle(ResolverStyle.STRICT);
 		try {
@@ -93,7 +103,7 @@ public class ParamCheck {
 			return false;
 		}
 	}
-	
+
 	public boolean isDateOld(String dateText) {
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	    sdf.setLenient(false);         // 日付チェックを厳密にする

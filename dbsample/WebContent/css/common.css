@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+/*
+ * 共通設定 - 初期設定
+ */
+body, h1, h2, h3, p, ul {
+	margin: 0;
+}
+
+ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+.center-layout {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.no-border {
+	border: none;
+}
+.no-background {
+	background-color: transparent;
+}
+.link-word {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+a {
+	color: #000;
+}
+
+.error {
+  color: red;
+}
+
+main {
+	padding-bottom: 64px;
+	display: flex;
+}
+
+article {
+	width: 80%;
+}
+aside {
+	width: 20%;
+}
+
+article h1 {
+	margin-bottom: 10px;
+}
+
+/*
+ * ヘッダー
+ */
+header {
+	margin-bottom: 20px;
+	border-bottom: solid 1px #aaa;
+	box-shadow: 0px 1px 3px #aaa;
+	background-color: #444;
+	color: #fff;
+}
+
+header h1 {
+	font-size: 1.2rem;
+	padding: 10px 0;
+}
+
+header h1 a {
+	color: #fff;
+	text-decoration: none;
+}
+
+/*
+ * フッター
+ */
+footer {
+	margin-top: 20px;
+	text-align: center;
+	padding: 10px 0;
+	background-color: #444;
+	color: #fff;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+/*
+ * 表のデザイン
+ */
+.edit-form,
+.confirm-form {
+  width: 400px;
+}
+
+.edit-form input[type="text"] {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.confirm-table td {
+  width: 200px;
+}
+
+th, td {
+	padding: 5px 8px;
+	border: solid 1px #aaa;
+}
+
+th {
+  text-align: left;
+}
+
+.btn-area {
+	text-align: right;
+}
+
+.submit-btn,
+.link-btn {
+  cursor: pointer;
+  width: 100px;
+  line-height: 24px;
+}
+
+/*
+ * asideのデザイン
+ */
+aside h1 {
+  margin-bottom: 10px;
+}
+ aside li {
+ 	margin-bottom: 10px;
+ }
+ .search-form {
+ 	border: solid 1px #ddd;
+ }
+ .search-box {
+ 	width: calc(100% - 40px);
+ 	line-height: 36px;
+ 	border: none;
+ 	background-color: transparent;
+ }
+ .search-box:focus {
+ 	outline: none;
+ }
+ .search-img {
+ 	vertical-align: middle;
+ 	cursor: pointer;
+ }
+ .img-find {
+ 	width: 24px;
+ }
