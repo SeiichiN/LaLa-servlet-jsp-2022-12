@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConnect {
 	static final String JDBC_URL =
-			"jdbc:h2:tcp://localhost/~/h2data/dbsample";
+			"jdbc:h2:tcp://localhost/~/dbsample";
 	static final String DB_USER = "sa";
 	static final String DB_PASS = "";
 	

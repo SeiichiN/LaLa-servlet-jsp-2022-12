@@ -1,5 +1,5 @@
 --
--- make_employee.sql
+-- make_dbsample.sql
 --
 
 CREATE USER IF NOT EXISTS "SA" SALT '5d54047a594b0370' HASH '35d640dce4afc2fb62a6f1b96ca95083f3eb5784d7f0719c93b077180ece7386' ADMIN;

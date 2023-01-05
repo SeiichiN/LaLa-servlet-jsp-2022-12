@@ -14,11 +14,16 @@ public class Birthday implements Serializable {
 	private String text;
 	private Date sqlDate;
 	private int age;
+	private LocalDate localBirth;
 	
 	public Birthday() {}
 	public Birthday(String text) {
+		if (!validate(text)) {
+			throw new IllegalArgumentException(text + ": 日付が不正です。");
+		}
 		this.text = text;
 		setAgeFromBirthday(text);
+		setSqlDateFromLocalBirth();
 	}
 	
 	public Birthday(Date date)  {
@@ -39,21 +44,27 @@ public class Birthday implements Serializable {
 		this.age = p.getYears();
 	}
 	
+	private boolean validate(String text) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Const.DATE_FORMAT);
+		try {
+			this.localBirth = LocalDate.parse(text, dtf);
+			return true;
+		} catch (DateTimeParseException e) {
+			return false;
+		}
+	}
+	
+	private void setSqlDateFromLocalBirth() {
+		this.sqlDate = Date.valueOf(this.localBirth);
+	}
 	/**
 	 * 日付文字列から sqlDate と年齢を求める
 	 * @param text 日付文字列(正しい日付かどうかはわからない)。
 	 */
 	private void setAgeFromBirthday(String text) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Const.DATE_FORMAT);
-		try {
-			LocalDate localBirth = LocalDate.parse(text, dtf);
-			this.sqlDate = Date.valueOf(localBirth);
-			LocalDate now = LocalDate.now();
-			Period p = Period.between(localBirth, now);
-			this.age = p.getYears();
-		} catch (DateTimeParseException e) {
-			this.age = 0;
-		}
+		LocalDate now = LocalDate.now();
+		Period p = Period.between(this.localBirth, now);
+		this.age = p.getYears();
 	}
 	public String getText() {
 		return text;
