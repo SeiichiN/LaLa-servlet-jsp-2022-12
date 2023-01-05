@@ -42,7 +42,47 @@ public class EmployeeDAO {
 			e.printStackTrace();
 			return null;
 		}
-		
 		return empList;
-	}
-}
+	}  // findAll() end
+	
+	public Employee findById(String id) {
+		Employee employee = null;
+		try (Connection conn =
+				DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "SELECT name, age FROM employee "
+					+ "WHERE id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id);
+			ResultSet rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				employee = new Employee(id, name, age);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return employee;
+	}  // findById()  End
+
+	public boolean remove(String id) {
+		try (Connection conn =
+				DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "DELETE employee WHERE id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, id);
+			int result = pStmt.executeUpdate();
+			
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}  // remove() end
+	
+}  // EmployeeDAO クラスの終わり
