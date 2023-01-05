@@ -43,30 +43,28 @@ public class EmployeeDAO {
 			return null;
 		}
 		return empList;
-	}
+	}  // findAll() end
 	
-	public Employee findById(String _id) {
-		Employee emp = null;
-		
-		try (Connection conn = DriverManager.getConnection(
-				JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT id, name, age FROM employee "
+	public Employee findById(String id) {
+		Employee employee = null;
+		try (Connection conn =
+				DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "SELECT name, age FROM employee "
 					+ "WHERE id = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, _id);
+			pStmt.setString(1, id);
 			ResultSet rs = pStmt.executeQuery();
 			
 			if (rs.next()) {
-				String id = rs.getString("id");
 				String name = rs.getString("name");
 				int age = rs.getInt("age");
-				emp = new Employee(id, name, age);
+				employee = new Employee(id, name, age);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return emp;
+		return employee;
 	}
 
 	public List<Employee> findByName(String _name) {
