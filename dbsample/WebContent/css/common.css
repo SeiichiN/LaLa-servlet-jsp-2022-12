@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+/*
+ * 初期設定
+ */
+body, h1, h2, h3, p, ul {
+	margin: 0;
+}
+ul {
+	padding: 0;
+	list-style-type: none;
+}
+.center-layout {
+	width: 700px;
+	margin: 0 auto;
+}
+.no-border {
+	border: none;
+}
+.no-background {
+	background-color: transparent;
+}
+
+main {
+	display: flex;
+}
+article {
+	width: 80%;
+}
+aside {
+	width: 20%;
+}
+
+
+
