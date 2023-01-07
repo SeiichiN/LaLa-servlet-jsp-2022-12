@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,42 +116,12 @@ public class _EmployeeDAO {
 			while (rs.next()) {
 				Employee employee = getEmp(rs);
 				empList.add(employee);
-=======
-	private final String SQL_FIND_ALL =
-			"SELECT" +
-			"  e.id AS eid," +
-			"  e.name AS ename, " +
-			"  g.id AS gid, " +
-			"  g.name AS gname, " +
-			"  e.birthday AS birthday, " +
-			"  d.id AS did, " +
-			"  d.name AS dname " +
-			"FROM employee e " +
-			"INNER JOIN gender g " +
-			"  ON e.gender_id = g.id " +
-			"INNER JOIN dept d " +
-			"  ON e.dept_id = d.id " +
-			"ORDER BY e.id ASC";
-	
-	public List<Employee> findAll() {
-		List<Employee> empList = new ArrayList<>();
-		
-		try (Connection conn = DBConnect.connect()) {
-			PreparedStatement pStmt =
-					conn.prepareStatement(SQL_FIND_ALL);
-			ResultSet rs = pStmt.executeQuery();
-			
-			while (rs.next()) {
-				Employee emp = getEmp(rs);
-				empList.add(emp);
->>>>>>> main
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 		return empList;
-<<<<<<< HEAD
 	}
 	
 	public Employee findById(int id) {
@@ -172,15 +143,8 @@ public class _EmployeeDAO {
 	}
 	
 	private Employee getEmp(ResultSet rs) throws SQLException {
-		int id = rs.getInt("eid");
+		String id = rs.getString("eid");
 		String name = rs.getString("ename");
-=======
-	}  // findAll() end
-	
-	private Employee getEmp(ResultSet rs) throws SQLException {
-		String eid = rs.getString("eid");
-		String ename = rs.getString("ename");
->>>>>>> main
 		String gid = rs.getString("gid");
 		String gname = rs.getString("gname");
 		Gender gender = new Gender(gid, gname);
@@ -188,16 +152,7 @@ public class _EmployeeDAO {
 		String did = rs.getString("did");
 		String dname = rs.getString("dname");
 		Dept dept = new Dept(did, dname);
-<<<<<<< HEAD
 		Employee employee = new Employee(id, name, gender, birthday, dept);
 		return employee;
 	}
 }
-=======
-		Employee emp = 
-				new Employee(eid, ename, gender, birthday, dept);
-		return emp;
-	}
-	
-}  // class end
->>>>>>> main

@@ -20,6 +20,10 @@ ul {
 .no-background {
 	background-color: transparent;
 }
+.link-word {
+	text-decoration: underline;
+	cursor: pointer;
+}
 
 main {
 	display: flex;

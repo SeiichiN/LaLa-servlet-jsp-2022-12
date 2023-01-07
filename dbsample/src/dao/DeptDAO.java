@@ -15,7 +15,7 @@ public class DeptDAO {
 		List<Dept> deptList= new ArrayList<>();
 		
 		try (Connection conn = DBConnect.connect()) {
-			String sql = "SELECT id, name FROM department ORDER BY id ASC";
+			String sql = "SELECT id, name FROM dept ORDER BY id ASC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			

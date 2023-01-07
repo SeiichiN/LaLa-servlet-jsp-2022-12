@@ -19,6 +19,7 @@ public class ParamCheck {
 	private final String DATE_PATTERN = "uuuu-MM-dd";
 	
 	public void validate(Employee emp, List<MyError> errorList) {
+		checkId(emp.getId(), errorList);
 		checkName(emp.getName(), errorList);
 		checkGender_id(emp.getGender(), errorList);
 		checkBirthday(emp.getBirthday(), errorList);
@@ -27,6 +28,16 @@ public class ParamCheck {
 	
 	public boolean validateDate(String dateText) {
 		return isDate(dateText);
+	}
+
+	private void checkId(String id, List<MyError> errorList) {
+		nullCheck("ID", id, errorList);
+		if (id.matches("^EMP[0-9]{3}$")) {
+			;
+		} else {
+			MyError err = new MyError("ID", "不正なIDです。");
+			errorList.add(err);
+		}
 	}
 	
 	private void checkName(String name, List<MyError> errorList) {

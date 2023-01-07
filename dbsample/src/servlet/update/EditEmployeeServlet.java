@@ -23,8 +23,4 @@ public class EditEmployeeServlet extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-	private ParamEmp toParamEmp(Employee emp) {
-		String age = "" + emp.getAge();
-		return new ParamEmp(emp.getId(), emp.getName(), age);
-	}
 }

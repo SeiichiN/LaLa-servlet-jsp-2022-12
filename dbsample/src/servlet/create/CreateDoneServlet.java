@@ -16,17 +16,13 @@ public class CreateDoneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String gender_id = request.getParameter("gender_id");
-		String birthday = request.getParameter("birthday");
-		String dept_id = request.getParameter("dept_id");
-		Employee employee = MyTool.makeEmp(name, gender_id, birthday, dept_id);
+		Employee emp = MyTool.getEmpByParameter(request);
 		CreateEmployeeLogic logic = new CreateEmployeeLogic();
 		String msg = "";
-		if (logic.execute(employee)) {
-			msg = name + "さんを登録しました。";
+		if (logic.execute(emp)) {
+			msg = emp.getName() + "さんを登録しました。";
 		} else {
-			msg = name + "さんを登録できませんでした。";
+			msg = "登録できませんでした。";
 		}
 		request.setAttribute("msg", msg);
 		String url = "/WEB-INF/jsp/create/createResult.jsp";

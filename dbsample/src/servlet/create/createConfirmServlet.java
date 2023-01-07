@@ -21,15 +21,11 @@ public class createConfirmServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MyError> errorList = new ArrayList<>();
-		String name = request.getParameter("name");
-		String gender_id = request.getParameter("gender_id");
-		String birthday = request.getParameter("birthday");
-		String dept_id = request.getParameter("dept_id");
-		Employee employee = MyTool.makeEmp(name, gender_id, birthday, dept_id);
+		Employee emp = MyTool.getEmpByParameter(request);
 		ParamCheck paramCheck = new ParamCheck();
-		paramCheck.validate(employee, errorList);
+		paramCheck.validate(emp, errorList);
 		
-		request.setAttribute("emp", employee);
+		request.setAttribute("emp", emp);
 		String url = null;
 		if (errorList.size() > 0) {
 			request.setAttribute("errorList", errorList);

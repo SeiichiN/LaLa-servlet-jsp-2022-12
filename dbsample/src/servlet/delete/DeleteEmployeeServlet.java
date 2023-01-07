@@ -16,7 +16,7 @@ public class DeleteEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
+		String id = request.getParameter("id");
 		FindEmpByIdLogic logic = new FindEmpByIdLogic();
 		Employee emp = logic.execute(id);
 		request.setAttribute("emp", emp);

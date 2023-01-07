@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Employee;
 import model.MyError;
-import model.ParamEmp;
+import util.MyTool;
 import util.ParamCheck;
 
 @WebServlet("/updateConfirm")
@@ -20,14 +21,11 @@ public class UpdateConfirmServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MyError> errorList = new ArrayList<>();
-		String id = request.getParameter("id").toUpperCase();
-		String name = request.getParameter("name");
-		String age = request.getParameter("age");
-		ParamEmp paramEmp = new ParamEmp(id, name, age);
+		Employee emp = MyTool.getEmpByParameter(request);
 		ParamCheck paramCheck = new ParamCheck();
-		paramCheck.updateValidate(paramEmp, errorList);
+		paramCheck.validate(emp, errorList);
 		
-		request.setAttribute("paramEmp", paramEmp);
+		request.setAttribute("emp", emp);
 		String url = null;
 		if (errorList.size() > 0) {
 			request.setAttribute("errorList", errorList);

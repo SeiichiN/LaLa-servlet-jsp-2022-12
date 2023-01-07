@@ -23,12 +23,8 @@ public class CreateEmployeeServlet extends HttpServlet {
 	 * createConfirm.jspでユーザーがキャンセルを選択した場合、ここにパラメータが送られてくる。
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String gender_id = request.getParameter("gender_id");
-		String birthday = request.getParameter("birthday");
-		String dept_id = request.getParameter("dept_id");
-		Employee employee = MyTool.makeEmp(name, gender_id, birthday, dept_id);
-		request.setAttribute("emp", employee);
+		Employee emp = MyTool.getEmpByParameter(request);
+		request.setAttribute("emp", emp);
 		String url = "/WEB-INF/jsp/create/createEmp.jsp";
 		request.getRequestDispatcher(url).forward(request, response);
 	}

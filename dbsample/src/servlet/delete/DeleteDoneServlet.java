@@ -14,7 +14,7 @@ public class DeleteDoneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
+		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		DeleteEmpByIdLogic logic = new DeleteEmpByIdLogic();
 		String msg = "";

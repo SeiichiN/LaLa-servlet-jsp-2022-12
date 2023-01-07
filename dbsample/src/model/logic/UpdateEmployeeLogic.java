@@ -3,9 +3,9 @@ package model.logic;
 import dao.EmployeeDAO;
 import model.Employee;
 
-public class FindEmpByIdLogic {
-	public Employee execute(String id) {
+public class UpdateEmployeeLogic {
+	public boolean execute(Employee emp) {
 		EmployeeDAO dao = new EmployeeDAO();
-		return dao.findEmpById(id);
+		return dao.update(emp);
 	}
 }
