@@ -20,6 +20,7 @@ public class GetEmpListServlet extends HttpServlet {
 		GetEmpListLogic logic = new GetEmpListLogic();
 		List<Employee> empList = logic.execute();
 		request.setAttribute("empList", empList);
+		request.setAttribute("article_title", "社員一覧");
 		String url = "/WEB-INF/jsp/find/empList.jsp";
 		request.getRequestDispatcher(url)
 		       .forward(request, response);

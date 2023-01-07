@@ -10,13 +10,16 @@ import java.util.List;
 import model.Dept;
 
 public class DeptDAO {
-
+	private final String SQL_FIND_ALL = 
+			"SELECT id, name FROM dept ORDER BY id ASC";
+	private final String SQL_FIND_BY_ID = 
+			"SELECT name FROM dept WHERE id = ?";
+	
 	public List<Dept> findAll() {
 		List<Dept> deptList= new ArrayList<>();
 		
 		try (Connection conn = DBConnect.connect()) {
-			String sql = "SELECT id, name FROM dept ORDER BY id ASC";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+			PreparedStatement pStmt = conn.prepareStatement(SQL_FIND_ALL);
 			ResultSet rs = pStmt.executeQuery();
 			
 			while (rs.next()) {
@@ -36,8 +39,7 @@ public class DeptDAO {
 		Dept dept= null;
 		
 		try (Connection conn = DBConnect.connect()) {
-			String sql = "SELECT name FROM department WHERE id = ?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
+			PreparedStatement pStmt = conn.prepareStatement(SQL_FIND_BY_ID);
 			pStmt.setString(1, id);
 			ResultSet rs = pStmt.executeQuery();
 			

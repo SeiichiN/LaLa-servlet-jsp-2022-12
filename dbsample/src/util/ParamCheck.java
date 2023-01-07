@@ -13,6 +13,7 @@ import model.Dept;
 import model.Employee;
 import model.Gender;
 import model.MyError;
+import model.logic.FindEmpByIdLogic;
 
 
 public class ParamCheck {
@@ -32,10 +33,19 @@ public class ParamCheck {
 
 	private void checkId(String id, List<MyError> errorList) {
 		nullCheck("ID", id, errorList);
+		duplicationCheck(id, errorList);
 		if (id.matches("^EMP[0-9]{3}$")) {
 			;
 		} else {
 			MyError err = new MyError("ID", "不正なIDです。");
+			errorList.add(err);
+		}
+	}
+	
+	private void duplicationCheck(String id, List<MyError> errorList) {
+		FindEmpByIdLogic logic = new FindEmpByIdLogic();
+		if (logic.execute(id) != null) {
+			MyError err = new MyError(id, "そのIDはすでに使われています。");
 			errorList.add(err);
 		}
 	}

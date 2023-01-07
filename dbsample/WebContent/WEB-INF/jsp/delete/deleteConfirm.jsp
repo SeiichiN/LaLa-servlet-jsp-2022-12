@@ -38,7 +38,7 @@
 					<tr>
 						<th>誕生日</th>
 						<td>
-							<c:out value="${emp.birthday.text}" />
+							<c:out value="${emp.birthday}" />
 						</td>
 					</tr>
 					<tr>

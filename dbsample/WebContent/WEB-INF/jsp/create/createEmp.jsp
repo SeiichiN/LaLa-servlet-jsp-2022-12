@@ -27,6 +27,13 @@
 				<form class="edit-form">
 					<table>
 						<tr>
+							<th>ID</th>
+							<td>
+								<input type="text" name="id" placeholder="EMP000" 
+								       value="<c:out value="${emp.id}" />">
+							</td>
+						</tr>
+						<tr>
 							<th>名前</th>
 							<td>
 								<input type="text" name="name" 
@@ -68,7 +75,7 @@
 						</tr>
 					</table>
 					<div class="btn-area">
-						<input type="submit" class="link-btn" value="キャンセル"
+						<input type="submit" class="cansel-btn" value="キャンセル"
 						       formmethod="get"
 						       formaction="${pageContext.request.contextPath}/list">
 						<input type="submit" class="submit-btn" value="確認"

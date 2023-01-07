@@ -16,6 +16,12 @@
 				<h1>新規社員登録・確認</h1>
 				<table class="confirm-table">
 					<tr>
+						<th>ID</th>
+						<td>
+							<c:out value="${emp.id}" />
+						</td>
+					</tr>
+					<tr>
 						<th>名前</th>
 						<td>
 							<c:out value="${emp.name}" />
@@ -44,13 +50,14 @@
 					</tr>
 				</table>
 				<form method="post" class="confirm-form">
+					<input type="hidden" name="id" value="${emp.id}">
 					<input type="hidden" name="name" value="${emp.name}">
 					<input type="hidden" name="gender_id" value="${emp.gender.id}">
 					<input type="hidden" name="birthday" value="${emp.birthday}">
 					<input type="hidden" name="dept_id" value="${emp.dept.id}">
 					
 					<div class="btn-area">
-						<input type="submit" class="link-btn" value="キャンセル" 
+						<input type="submit" class="cansel-btn" value="キャンセル" 
 						       formaction="${pageContext.request.contextPath}/create">
 						<input type="submit" class="submit-btn" 
 						       formaction="${pageContext.request.contextPath}/createDone" value="登録">

@@ -34,7 +34,7 @@ public class EmployeeDAO {
 			+ "  e.name AS ename,"
 			+ "  g.id AS gid,"
 			+ "  g.name AS gname,"
-			+ "  e.birthday,"
+			+ "  e.birthday AS birthday,"
 			+ "  d.id AS did,"
 			+ "  d.name AS dname "
 			+ "FROM EMPLOYEE e "
@@ -44,11 +44,46 @@ public class EmployeeDAO {
 			+ "  ON e.dept_id = d.id "
 			+ "WHERE e.id = ? "
 			+ "ORDER BY e.id ASC";
-			
+
+	private final String SQL_FIND_BY_NAME =
+			"SELECT "
+			+ "  e.id AS eid,"
+			+ "  e.name AS ename,"
+			+ "  g.id AS gid,"
+			+ "  g.name AS gname,"
+			+ "  e.birthday AS birthday,"
+			+ "  d.id AS did,"
+			+ "  d.name AS dname "
+			+ " FROM EMPLOYEE e "
+			+ " INNER JOIN gender g "
+			+ "   ON e.gender_id = g.id "
+			+ " INNER JOIN dept d " 
+			+ "   ON e.dept_id = d.id "
+			+ " WHERE e.name like ?"
+			+ " ORDER BY e.id ASC";
+
+	private final String SQL_FIND_BY_DEPT_ID =
+			"SELECT "
+			+ "  e.id AS eid,"
+			+ "  e.name AS ename,"
+			+ "  g.id AS gid,"
+			+ "  g.name AS gname,"
+			+ "  e.birthday AS birthday,"
+			+ "  d.id AS did,"
+			+ "  d.name AS dname "
+			+ " FROM EMPLOYEE e "
+			+ " INNER JOIN gender g "
+			+ "   ON e.gender_id = g.id "
+			+ " INNER JOIN dept d " 
+			+ "   ON e.dept_id = d.id "
+			+ " WHERE e.dept_id = ?"
+			+ " ORDER BY e.id ASC";
+	
+	
 	private final String SQL_CREATE =
 			"INSERT INTO employee " 
-			+ " (name, gender_id, birthday, dept_id) "
-			+ "VALUES (?, ?, ?, ?)";
+			+ " (id, name, gender_id, birthday, dept_id) "
+			+ "VALUES (?, ?, ?, ?, ?)";
 	
 	private final String SQL_UPDATE = 
 			"UPDATE employee " 
@@ -61,8 +96,6 @@ public class EmployeeDAO {
 
 	private final String SQL_DELETE =
 			"DELETE FROM employee WHERE id = ?";
-	
-	
 	
 	public List<Employee> findAll() {
 		List<Employee> empList = new ArrayList<>();
@@ -98,17 +131,55 @@ public class EmployeeDAO {
 			return null;
 		}
 		return employee;
-		
-	}
+	} // findEmpById() end
 	
+	public List<Employee> findEmpByName(String name) {
+		List<Employee> empList = new ArrayList<>();
+		
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_FIND_BY_NAME);
+			pStmt.setString(1, "%" + name + "%");
+			ResultSet rs = pStmt.executeQuery();
+			
+			while (rs.next()) {
+				Employee emp = getEmp(rs);
+				empList.add(emp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return empList;
+	}  // findEmpByName() end
+	
+	public List<Employee> findEmpByDeptId(String deptId) {
+		List<Employee> empList = new ArrayList<>();
+
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_FIND_BY_DEPT_ID);
+			pStmt.setString(1, deptId);
+			ResultSet rs = pStmt.executeQuery();
+			
+			while (rs.next()) {
+				Employee emp = getEmp(rs);
+				empList.add(emp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return empList;
+	}
 	
 	public boolean create(Employee emp) {
 		try (Connection conn = DBConnect.connect()) {
 			PreparedStatement pStmt = conn.prepareStatement(SQL_CREATE);
-			pStmt.setString(1, emp.getName());
-			pStmt.setString(2, emp.getGender().getId());
-			pStmt.setString(3, emp.getBirthday());
-			pStmt.setString(4, emp.getDept().getId());
+			pStmt.setString(1, emp.getId());
+			pStmt.setString(2, emp.getName());
+			pStmt.setString(3, emp.getGender().getId());
+			pStmt.setString(4, emp.getBirthday());
+			pStmt.setString(5, emp.getDept().getId());
 			int result = pStmt.executeUpdate();
 			if (result != 1) {
 				return false;

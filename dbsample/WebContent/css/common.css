@@ -6,36 +6,50 @@
 body, h1, h2, h3, p, ul {
 	margin: 0;
 }
+
 ul {
 	padding: 0;
 	list-style-type: none;
 }
+
+a {
+	color: #000;
+}
+
 .center-layout {
 	width: 700px;
 	margin: 0 auto;
 }
+
 .no-border {
 	border: none;
 }
+
 .no-background {
 	background-color: transparent;
 }
+
 .link-word {
 	text-decoration: underline;
 	cursor: pointer;
 }
 
+.error {
+	color: red;
+}
+
 main {
 	display: flex;
 }
+
 article {
 	width: 80%;
 }
+
 aside {
 	width: 20%;
 }
 
-/* <<<<<<< HEAD */
 
 article h1 {
 	margin-bottom: 10px;
@@ -79,24 +93,23 @@ footer {
 /*
  * 表のデザイン
  */
-.edit-form,
-.confirm-form {
-  width: 400px;
+.edit-form, .confirm-form {
+	width: 400px;
 }
 
 .edit-form input[type="text"] {
-  width: 100%;
-  border: none;
-  outline: none;
+	width: 100%;
+	border: none;
+	outline: none;
 }
 
 table {
-  border-collapse: collapse;
-  margin-bottom: 20px;
+	border-collapse: collapse;
+	margin-bottom: 20px;
 }
 
 .confirm-table td {
-  width: 200px;
+	width: 200px;
 }
 
 th, td {
@@ -105,45 +118,60 @@ th, td {
 }
 
 th {
-  text-align: left;
+	text-align: left;
 }
 
 .btn-area {
 	text-align: right;
 }
 
-.submit-btn,
-.link-btn {
-  cursor: pointer;
-  width: 100px;
-  line-height: 24px;
+.submit-btn, .cansel-btn {
+	cursor: pointer;
+	width: 100px;
+	line-height: 24px;
+}
+
+.img-pencil,
+.img-trash {
+	width: 16px;
+	padding: 5px 2px;
+}
+.no-padding {
+	padding: 0;
 }
 
 /*
  * asideのデザイン
  */
 aside h1 {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
- aside li {
- 	margin-bottom: 10px;
- }
- .search-form {
- 	border: solid 1px #ddd;
- }
- .search-box {
- 	width: calc(100% - 40px);
- 	line-height: 36px;
- 	border: none;
- 	background-color: transparent;
- }
- .search-box:focus {
- 	outline: none;
- }
- .search-img {
- 	vertical-align: middle;
- 	cursor: pointer;
- }
- .img-find {
- 	width: 24px;
- }
+
+aside li {
+	margin-bottom: 10px;
+}
+
+.search-form {
+	border: solid 1px #ddd;
+}
+
+.search-box {
+	width: calc(100% - 36px);
+	line-height: 36px;
+	height: 36px;
+	border: none;
+	background-color: transparent;
+}
+
+.search-box:focus {
+	outline: none;
+}
+
+.search-img {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.img-find {
+	width: 20px;
+}
