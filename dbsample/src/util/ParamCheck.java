@@ -104,7 +104,7 @@ public class ParamCheck {
 			errorList.add(err);
 		}
 	}
-	
+
 	/**
 	 * 列挙型ResolverStyle
 	 * https://docs.oracle.com/javase/jp/8/docs/api/java/time/format/ResolverStyle.html

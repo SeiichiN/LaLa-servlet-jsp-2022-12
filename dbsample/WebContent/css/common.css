@@ -66,14 +66,34 @@ header {
 	color: #fff;
 }
 
-header h1 {
-	font-size: 1.2rem;
+#header-inn {
+	display: flex;
 	padding: 10px 0;
 }
 
-header h1 a {
+#header-inn h1 {
+	font-size: 1.2rem;
+	width: 50%;
+}
+
+#header-inn h1 a {
 	color: #fff;
 	text-decoration: none;
+}
+
+#logout {
+	width: 50%;
+	font-size: 0.8em;
+}
+
+#loginuser {
+	margin-right: 20px;
+}
+
+#logout a {
+	color: #eee;
+	text-decoration: underline;
+	font-size: 0.8em;
 }
 
 /*
