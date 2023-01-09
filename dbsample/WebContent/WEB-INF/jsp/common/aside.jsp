@@ -7,13 +7,15 @@
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/create">新規社員情報登録</a></li>
 			<li>
-				<form action="${pageContext.request.contextPath}/findName" method="post" class="search-form">
+				<form action="${pageContext.request.contextPath}/findName" method="post" 
+				      class="search-form">
 					<input type="text" name="name" class="search-box" placeholder="名前で検索">
 					<button type="submit" class="no-border no-background search-img">${img_find}</button>
 				</form>
 			</li>
 			<li>
-				<form action="${pageContext.request.contextPath}/findDept" method="post" class="search-form">
+				<form action="${pageContext.request.contextPath}/findDept" method="post" 
+				      class="search-form">
 					<select name="deptId" class="search-box">
 						<c:forEach var="dept" items="${deptList}">
 							<option value="${dept.id}">${dept.name}</option>

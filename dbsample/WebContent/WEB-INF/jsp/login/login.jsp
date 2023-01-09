@@ -7,6 +7,22 @@
 	<meta charset="UTF-8">
 	<title>ログイン - 社員情報マネージャー</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+  <style>
+  	.login-form {
+  		width: 300px;
+  	}
+  	.input-line {
+  		display: flex;
+  		margin-bottom: 10px;
+  	}
+  	.input-title {
+  		text-align: right;
+  		flex-basis: 100px;
+  	}
+  	.submit-line {
+  		text-align: right;
+  	}
+  </style>
 </head>
 <body>
 	<header>
@@ -23,10 +39,18 @@
   					<li class="error">${error.key} : ${error.msg}</li>
   				</c:forEach>
   			</ul>
-  			<form action="${pageContext.request.contextPath}/login" method="POST">
-	  			ID：<input type="text" name="id"><br>
-	  			パスワード：<input type="password" name="pass"><br>
-	  			<input type="submit" value="ログイン">
+  			<form class="login-form" action="${pageContext.request.contextPath}/login" method="POST">
+	  			<div class="input-line">
+	  			  <div class="input-title">ID：</div>
+	  			  <input class="input-box" type="text" name="id">
+	  			</div>
+	  			<div class="input-line">
+	  				<div class="input-title">パスワード：</div>
+	  			  <input class="input-box" type="password" name="pass">
+					</div>
+	  			<div class="submit-line">
+	  				<input type="submit" value="ログイン">
+	  			</div>
   			</form>
   		</article>
   		

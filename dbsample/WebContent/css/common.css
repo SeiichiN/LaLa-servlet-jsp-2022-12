@@ -173,23 +173,32 @@ aside li {
 
 .search-form {
 	border: solid 1px #ddd;
+	display: flex;
+	width: 100%;
 }
 
+/* .search-box  {  */
+/*   	width: calc(100% - 36px); */
+ 	
+/* } */
+
 .search-box {
-	width: calc(100% - 36px);
+	width: 100%;
+	flex-shrink: 1;
 	line-height: 36px;
-	height: 36px;
-	border: none;
-	background-color: transparent;
+  height: 36px;
+  border: none;
+  background-color: transparent;
 }
 
 .search-box:focus {
-	outline: none;
+  outline: none;
 }
 
 .search-img {
 	vertical-align: middle;
 	cursor: pointer;
+	flex-shrink: 0;
 }
 
 .img-find {

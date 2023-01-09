@@ -22,22 +22,22 @@ public class LoginFilter extends HttpFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// サーブレットパスを調べる。
 		String path = ((HttpServletRequest) request).getServletPath();
-		// "/login"であれば、そのままログインページを表示する。
-		if (path.equals("/login")) {
-			chain.doFilter(request, response);
-		} 
-		// 他のurlなら、セッションを調べて、"loginUser"があれば、ログイン中だと判定。
-		else {
+		System.out.println(path);
+		// 以下であれば、そのままログインページを表示する。
+		if (path.equals("/login") || 
+			path.startsWith("/css") || 
+			path.startsWith("/img")) {
+			;
+		} else {
+			// セッションスコープに loginUserビーンズがなければ、未ログインである。
 			HttpSession session = ((HttpServletRequest) request).getSession();
-			if (session.getAttribute("loginUser") != null) {
-				chain.doFilter(request, response);
+			if (session.getAttribute("loginUser") == null) {
+				String url = ((HttpServletRequest)request).getContextPath() + "/login";
+				((HttpServletResponse)response).sendRedirect(url);
+				return;
 			} 
-			// ログインしていないので、"/login"にリダイレクト
-			else {
-				String url = ((HttpServletRequest) request).getContextPath() + "/login";
-				((HttpServletResponse) response).sendRedirect(url);
-			}
 		}
+		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {}
