@@ -17,7 +17,6 @@ import model.logic.FindEmpByIdLogic;
 
 
 public class ParamCheck {
-	private final String DATE_PATTERN = "uuuu-MM-dd";
 	
 	public void validate(Employee emp, List<MyError> errorList) {
 		checkId(emp.getId(), errorList);
@@ -98,7 +97,13 @@ public class ParamCheck {
 		}
 	}
 
-	private void nullCheck(String key, String value, List<MyError> errorList) {
+	/**
+	 * valueがnullでないか、チェックする。
+	 * @param key valueの項目名。エラー表示のときに、項目名も表示するとわかりやすくなる。
+	 * @param value 調べたい項目。
+	 * @param errorList MyErrorクラスのリスト。
+	 */
+	public void nullCheck(String key, String value, List<MyError> errorList) {
 		if (value == null || value.length() == 0) {
 			MyError err = new MyError(key, "文字が入力されていません。");
 			errorList.add(err);
@@ -106,6 +111,9 @@ public class ParamCheck {
 	}
 
 	/**
+	 * Date(java.time.LocalDate) が正しい日付であるかをチェックする。
+	 * 
+	 * (参考）
 	 * 列挙型ResolverStyle
 	 * https://docs.oracle.com/javase/jp/8/docs/api/java/time/format/ResolverStyle.html
 	 * 
@@ -116,6 +124,7 @@ public class ParamCheck {
 	 * @return
 	 */
 	public boolean isDate(String dateText) {
+		final String DATE_PATTERN = "uuuu-MM-dd";
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern(DATE_PATTERN).withResolverStyle(ResolverStyle.STRICT);
 		try {
 			LocalDate.parse(dateText, fmt);
