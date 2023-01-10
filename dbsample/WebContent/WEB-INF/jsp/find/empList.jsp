@@ -16,14 +16,33 @@
   <main class="center-layout">
   	<article>
   		<h1>社員一覧</h1>
-		  <c:forEach var="emp" items="${empList}">
-		  	${emp.id}<br>
-		  	${emp.name}<br>
-		  	${emp.gender.id} : ${emp.gender.name}<br>
-		  	${emp.birthday}<br>
-		  	${emp.dept.id} : ${emp.dept.name}<br>
-		  	<br>
-		  </c:forEach>
+  		
+  		<table>
+  			<tr>
+  				<th>ID</th>
+  				<th>名前</th>
+  				<th>性別</th>
+  				<th>誕生日</th>
+  				<th>部署名</th>
+  				<th class="no-border no-background"></th>
+  				<th class="no-border no-background"></th>
+  			</tr>
+			  <c:forEach var="emp" items="${empList}">
+			  	<tr>
+			  		<td>${emp.id}</td>
+			  		<td>${emp.name}</td>
+			  		<td>${emp.gender.name}</td>
+			  		<td>${emp.birthday}</td>
+			  		<td>${emp.dept.name}</td>
+			  		<td class="no-border img-td">
+			  		  ${img_pencil}
+			  		</td>
+			  		<td class="no-border img-td">
+			  		  ${img_trash}
+			  		</td>
+			  	</tr>
+			  </c:forEach>
+		  </table>
 	  </article>
 	  <jsp:include page="/WEB-INF/jsp/common/aside.jsp" />
   </main>
