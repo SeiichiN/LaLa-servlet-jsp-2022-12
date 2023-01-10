@@ -18,7 +18,7 @@ import model.logic.FindEmpByIdLogic;
 
 public class ParamCheck {
 	
-	public void validate(Employee emp, List<MyError> errorList) {
+	public static void validate(Employee emp, List<MyError> errorList) {
 		checkId(emp.getId(), errorList);
 		checkName(emp.getName(), errorList);
 		checkGender_id(emp.getGender(), errorList);
@@ -26,11 +26,11 @@ public class ParamCheck {
 		checkDept_id(emp.getDept(), errorList);
 	}
 	
-	public boolean validateDate(String dateText) {
+	public static boolean validateDate(String dateText) {
 		return isDate(dateText);
 	}
 
-	private void checkId(String id, List<MyError> errorList) {
+	private static void checkId(String id, List<MyError> errorList) {
 		nullCheck("ID", id, errorList);
 		duplicationCheck(id, errorList);
 		if (id.matches("^EMP[0-9]{3}$")) {
@@ -41,7 +41,7 @@ public class ParamCheck {
 		}
 	}
 	
-	private void duplicationCheck(String id, List<MyError> errorList) {
+	private static void duplicationCheck(String id, List<MyError> errorList) {
 		FindEmpByIdLogic logic = new FindEmpByIdLogic();
 		if (logic.execute(id) != null) {
 			MyError err = new MyError(id, "そのIDはすでに使われています。");
@@ -49,7 +49,7 @@ public class ParamCheck {
 		}
 	}
 	
-	private void checkName(String name, List<MyError> errorList) {
+	private static void checkName(String name, List<MyError> errorList) {
 		nullCheck("名前", name, errorList);
 		if (name.length() > 50) {
 			MyError err = new MyError("名前", "文字が長すぎます(50文字以内)。");
@@ -57,7 +57,7 @@ public class ParamCheck {
 		}
 	}
 	
-	private void checkGender_id(Gender gender, List<MyError> errorList) {
+	private static void checkGender_id(Gender gender, List<MyError> errorList) {
 		String gender_id = gender.getId();
 		nullCheck("性別", gender_id, errorList);
 		int result = MyTool.parseInt(gender_id);
@@ -67,7 +67,7 @@ public class ParamCheck {
 		}
 	}
 	
-	private void checkBirthday(String birthday, List<MyError> errorList) {
+	private static void checkBirthday(String birthday, List<MyError> errorList) {
 		nullCheck("誕生日", birthday, errorList);
 		if (birthday.matches("^[1-2][0-9]{3}/[0-9]{2}/[0-9]{2}$")) {
 			birthday.replaceAll("/", "-");
@@ -86,7 +86,7 @@ public class ParamCheck {
 		}
 	}
 	
-	private void checkDept_id(Dept dept, List<MyError> errorList) {
+	private static void checkDept_id(Dept dept, List<MyError> errorList) {
 		String dept_id = dept.getId();
 		nullCheck("部署コード", dept_id, errorList);
 		if (dept_id.matches("^d[0-9]{2}$")) {
@@ -103,7 +103,7 @@ public class ParamCheck {
 	 * @param value 調べたい項目。
 	 * @param errorList MyErrorクラスのリスト。
 	 */
-	public void nullCheck(String key, String value, List<MyError> errorList) {
+	public static void nullCheck(String key, String value, List<MyError> errorList) {
 		if (value == null || value.length() == 0) {
 			MyError err = new MyError(key, "文字が入力されていません。");
 			errorList.add(err);
@@ -120,10 +120,14 @@ public class ParamCheck {
 	 * Javaにおける日付文字列の書式チェック方法
 	 * https://qiita.com/i_learnin/items/0e90036b2d7f664a249d
 	 * 
+	 * なぜ uuuu を使うのか
+	 * Java8のDate and Time APIではyyyyじゃなくてuuuuを使う
+	 * https://bufferings.hatenablog.com/entry/2017/10/23/000057
+	 * 
 	 * @param dateText
 	 * @return
 	 */
-	public boolean isDate(String dateText) {
+	public static boolean isDate(String dateText) {
 		final String DATE_PATTERN = "uuuu-MM-dd";
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern(DATE_PATTERN).withResolverStyle(ResolverStyle.STRICT);
 		try {
@@ -134,7 +138,7 @@ public class ParamCheck {
 		}
 	}
 
-	public boolean isDateOld(String dateText) {
+	public static boolean isDateOld(String dateText) {
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	    sdf.setLenient(false);         // 日付チェックを厳密にする
 	    try{
