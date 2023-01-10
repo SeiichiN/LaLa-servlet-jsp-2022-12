@@ -40,6 +40,9 @@ META-INF/
 # emacs
 *~
 
+# vi
+*#
+
 # VSCode
 .vscode/
 .code-workspace

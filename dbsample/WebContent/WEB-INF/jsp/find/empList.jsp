@@ -13,7 +13,7 @@
   <jsp:include page="/WEB-INF/jsp/common/header.jsp" />
   
   <main class="center-layout">
-  		<jsp:include page="/WEB-INF/jsp/common/article-list.jsp" />
+      <jsp:include page="/WEB-INF/jsp/common/article-list.jsp" />
   	  <jsp:include page="/WEB-INF/jsp/common/aside.jsp" />
   </main>
   <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
