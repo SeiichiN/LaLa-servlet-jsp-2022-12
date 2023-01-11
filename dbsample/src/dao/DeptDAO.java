@@ -11,8 +11,12 @@ import model.Dept;
 
 public class DeptDAO {
 	private final String SQL_FIND_ALL = 
-			"SELECT id, name FROM DEPT "
+			"SELECT id, name FROM dept "
 			+ " ORDER BY id ASC";
+	
+	private final String SQL_FIND_BY_ID =
+			"SELECT id, name FROM dept "
+			+ " WHERE id = ?";
 			
 	public List<Dept> findAll() {
 		List<Dept> deptList = new ArrayList<>();
@@ -32,6 +36,26 @@ public class DeptDAO {
 		}
 		return deptList;
 	}  // findAll() end
+
+	public Dept findById(String d_id) {
+		Dept dept = null;
+		
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt =
+					conn.prepareStatement(SQL_FIND_BY_ID);
+			pStmt.setString(1, d_id);
+			ResultSet rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				dept = getDept(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return dept;
+	}  // findById() end
+	
 	
 	private Dept getDept(ResultSet rs) throws SQLException {
 		String id = rs.getString("id");

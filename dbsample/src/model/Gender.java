@@ -11,6 +11,11 @@ public class Gender implements Serializable {
 		this.id = id;
 		this.name = name;
 	}
+	@Override
+	public String toString() {
+		return id + ":" + name;
+	}
+	
 	public String getId() {
 		return id;
 	}

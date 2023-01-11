@@ -75,7 +75,16 @@ th, td {
 	border: none;
 	outline: none;
 }
-
+.cansel-btn,
+.submit-btn {
+	width: 100px;
+}
+.btn-area {
+	text-align: right;
+}
+.input-form table {
+	margin-bottom: 10px;
+}
 
 /*
  * ヘッダー
