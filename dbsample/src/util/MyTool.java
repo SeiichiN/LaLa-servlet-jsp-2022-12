@@ -10,7 +10,7 @@ import model.logic.GetGenderByIdLogic;
 
 public class MyTool {
 	public Employee getEmpByParam(HttpServletRequest request) {
-		String id = request.getParameter("id");
+		String id = request.getParameter("id").toUpperCase();
 		String name = request.getParameter("name");
 		String gender_id = request.getParameter("gender");
 		String birthday = request.getParameter("birthday");

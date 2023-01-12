@@ -17,38 +17,64 @@
   	<article>
   		<h1>新規社員情報登録</h1>
   		
+  		<c:if test="${not empty errorList}">
+  			<ul>
+  				<c:forEach var="error" items="${errorList}">
+  					<li class="error">
+  						<c:out value="${error.key}" /> :
+  						<c:out value="${error.msg}" />
+  					</li>
+  				</c:forEach>
+  			</ul>
+  		</c:if>
+  		
   		<form class="input-form">
 	  		<table>
 					<tr>
 						<th>ID</th>
-						<td><input class="input-box" type="text" name="id"></td>
+						<td>
+						  <input class="input-box" type="text" name="id"
+						         value="<c:out value="${emp.id}" />">
+						</td>
 					</tr>
 					<tr>
 						<th>名前</th>
-						<td><input class="input-box" type="text" name="name"></td>
+						<td>
+							<input class="input-box" type="text" name="name"
+							       value="<c:out value="${emp.name}" />">
+						</td>
 					</tr>
 					<tr>
 						<th>性別</th>
 						<td>
-							<input type="radio" name="gender" value="1" id="man">
+							<input type="radio" name="gender" value="1" id="man"
+							       ${emp.gender.id == 1 ? 'checked' : ''}>
 							<label for="man">男性</label>
-							<input type="radio" name="gender" value="2" id="woman">
+							<input type="radio" name="gender" value="2" id="woman"
+							       ${emp.gender.id == 2 ? 'checked' : ''}>
 							<label for="woman">女性</label>
-							<input type="radio" name="gender" value="3" id="other">
+							<input type="radio" name="gender" value="3" id="other"
+							       ${emp.gender.id == 3 ? 'checked' : ''}>
 							<label for="other">その他</label>
 						</td>
 					</tr>
 					<tr>
 						<th>誕生日</th>
-						<td><input class="input-box" type="text" name="birthday" 
-						           placeholder="0000-00-00"></td>
+						<td>
+						  <input class="input-box" type="text" name="birthday" 
+						         placeholder="0000-00-00"
+						         value="<c:out value="${emp.birthday}" />">
+						</td>
 					</tr>
 					<tr>
 						<th>部署</th>
 						<td>
 							<select name="dept">
 								<c:forEach var="dept" items="${deptList}">
-									<option value="${dept.id}">${dept.name}</option>
+									<option value="${dept.id}"
+									       ${dept.id == emp.dept.id ? 'selected' : ''}>
+									  ${dept.name}
+								  </option>
 								</c:forEach>
 							</select>
 						</td>
