@@ -1,6 +1,7 @@
 package servlet.update;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,7 @@ public class UpdateDoneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Employee emp = MyTool.getEmpByParameter(request);
+		Employee emp = new MyTool().getEmpByParameter(request);
 		UpdateEmployeeLogic logic = new UpdateEmployeeLogic();
 		String msg = "";
 		if (logic.execute(emp)) {

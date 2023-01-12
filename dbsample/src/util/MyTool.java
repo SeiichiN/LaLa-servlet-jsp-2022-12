@@ -13,7 +13,7 @@ import model.logic.GetDeptByIdLogic;
 import model.logic.GetGenderByIdLogic;
 
 public class MyTool {
-	public static int parseInt(String param) {
+	public int parseInt(String param) {
 		int value = 0;
 		try {
 			value = Integer.parseInt(param);
@@ -35,20 +35,20 @@ public class MyTool {
 	 * @param dept_id
 	 * @return Employee
 	 */
-	public static Employee makeEmp(String id, String name, String gender_id, String birthday, String dept_id) {
+	public Employee makeEmp(String id, String name, String gender_id, String birthday, String dept_id) {
 		Gender gender = new GetGenderByIdLogic().execute(gender_id);
 		Dept dept = new GetDeptByIdLogic().execute(dept_id);
 		Employee employee = new Employee(id, name, gender, birthday, dept);
 		return employee;
 	}
 	
-	public static Employee getEmpByParameter(HttpServletRequest request) {
+	public Employee getEmpByParameter(HttpServletRequest request) {
 		String id = request.getParameter("id").toUpperCase();
 		String name = request.getParameter("name");
 		String gender_id = request.getParameter("gender_id");
 		String birthday = request.getParameter("birthday");
 		String dept_id = request.getParameter("dept_id");
-		Employee emp = MyTool.makeEmp(id, name, gender_id, birthday, dept_id);
+		Employee emp = new MyTool().makeEmp(id, name, gender_id, birthday, dept_id);
 		return emp;
 	}
 	
@@ -59,7 +59,7 @@ public class MyTool {
 	 * @param birthday
 	 * @return
 	 */
-	public static int getAge(String birthday) {
+	public int getAge(String birthday) {
 		final String DATE_FORMAT = "uuuu-MM-dd";
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern(DATE_FORMAT);
 		LocalDate localBirth = LocalDate.parse(birthday, fmt);

@@ -1,6 +1,7 @@
 package servlet.create;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ public class CreateEmployeeServlet extends HttpServlet {
 	 * createConfirm.jspでユーザーがキャンセルを選択した場合、ここにパラメータが送られてくる。
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Employee emp = MyTool.getEmpByParameter(request);
+		Employee emp = new MyTool().getEmpByParameter(request);
 		request.setAttribute("emp", emp);
 		String url = "/WEB-INF/jsp/create/createEmp.jsp";
 		request.getRequestDispatcher(url).forward(request, response);

@@ -21,8 +21,8 @@ public class UpdateConfirmServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MyError> errorList = new ArrayList<>();
-		Employee emp = MyTool.getEmpByParameter(request);
-		ParamCheck.validate(emp, errorList);
+		Employee emp = new MyTool().getEmpByParameter(request);
+		new ParamCheck().validate(emp, errorList);
 		
 		request.setAttribute("emp", emp);
 		String url = null;
