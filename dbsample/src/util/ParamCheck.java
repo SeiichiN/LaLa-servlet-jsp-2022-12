@@ -17,6 +17,7 @@ import model.logic.FindEmpByIdLogic;
 
 
 public class ParamCheck {
+	private boolean isError = false;
 	
 	public void validate(Employee emp, List<MyError> errorList) {
 		checkId(emp.getId(), errorList);
@@ -32,13 +33,14 @@ public class ParamCheck {
 
 	private void checkId(String id, List<MyError> errorList) {
 		nullCheck("ID", id, errorList);
-		duplicationCheck(id, errorList);
+		if (isError) { return; }
 		if (id.matches("^EMP[0-9]{3}$")) {
 			;
 		} else {
 			MyError err = new MyError("ID", "不正なIDです。");
 			errorList.add(err);
 		}
+		duplicationCheck(id, errorList);
 	}
 	
 	private void duplicationCheck(String id, List<MyError> errorList) {
@@ -51,6 +53,7 @@ public class ParamCheck {
 	
 	private void checkName(String name, List<MyError> errorList) {
 		nullCheck("名前", name, errorList);
+		if (isError) { return; }
 		if (name.length() > 50) {
 			MyError err = new MyError("名前", "文字が長すぎます(50文字以内)。");
 			errorList.add(err);
@@ -58,6 +61,8 @@ public class ParamCheck {
 	}
 	
 	private void checkGender_id(Gender gender, List<MyError> errorList) {
+		nullCheck("性別", gender, errorList);
+		if (isError) { return; }
 		String gender_id = gender.getId();
 		nullCheck("性別", gender_id, errorList);
 		int result = new MyTool().parseInt(gender_id);
@@ -69,6 +74,7 @@ public class ParamCheck {
 	
 	private void checkBirthday(String birthday, List<MyError> errorList) {
 		nullCheck("誕生日", birthday, errorList);
+		if (isError) { return; }
 		if (birthday.matches("^[1-2][0-9]{3}/[0-9]{2}/[0-9]{2}$")) {
 			birthday.replaceAll("/", "-");
 		}
@@ -107,6 +113,15 @@ public class ParamCheck {
 		if (value == null || value.length() == 0) {
 			MyError err = new MyError(key, "文字が入力されていません。");
 			errorList.add(err);
+			isError = true;
+		}
+	}
+	
+	private void nullCheck(String key, Object obj, List<MyError> errorList) {
+		if (obj == null) {
+			MyError err = new MyError(key, "未入力です。");
+			errorList.add(err);
+			isError = true;
 		}
 	}
 
