@@ -17,33 +17,41 @@ import model.logic.FindEmpByIdLogic;
 
 
 public class ParamCheck {
+	private List<MyError> errorList;
 	private boolean isError = false;
 	
-	public void validate(Employee emp, List<MyError> errorList) {
-		checkId(emp.getId(), errorList);
-		checkName(emp.getName(), errorList);
-		checkGender_id(emp.getGender(), errorList);
-		checkBirthday(emp.getBirthday(), errorList);
-		checkDept_id(emp.getDept(), errorList);
+	public ParamCheck(List<MyError> errorList) {
+		this.errorList = errorList;
+	}
+	
+	public void validate(Employee emp) {
+		checkId(emp.getId());
+		checkName(emp.getName());
+		checkGender_id(emp.getGender());
+		checkBirthday(emp.getBirthday());
+		checkDept_id(emp.getDept());
 	}
 	
 	public boolean validateDate(String dateText) {
 		return isDate(dateText);
 	}
 
-	private void checkId(String id, List<MyError> errorList) {
-		nullCheck("ID", id, errorList);
-		if (isError) { return; }
+	private void checkId(String id) {
+		nullCheck("ID", id);
+		if (isError) { 
+			isError = false;
+			return; 
+		}
 		if (id.matches("^EMP[0-9]{3}$")) {
 			;
 		} else {
 			MyError err = new MyError("ID", "不正なIDです。");
 			errorList.add(err);
 		}
-		duplicationCheck(id, errorList);
+		duplicationCheck(id);
 	}
 	
-	private void duplicationCheck(String id, List<MyError> errorList) {
+	private void duplicationCheck(String id) {
 		FindEmpByIdLogic logic = new FindEmpByIdLogic();
 		if (logic.execute(id) != null) {
 			MyError err = new MyError(id, "そのIDはすでに使われています。");
@@ -51,20 +59,26 @@ public class ParamCheck {
 		}
 	}
 	
-	private void checkName(String name, List<MyError> errorList) {
-		nullCheck("名前", name, errorList);
-		if (isError) { return; }
+	private void checkName(String name) {
+		nullCheck("名前", name);
+		if (isError) {
+			isError = false;
+			return; 
+		}
 		if (name.length() > 50) {
 			MyError err = new MyError("名前", "文字が長すぎます(50文字以内)。");
 			errorList.add(err);
 		}
 	}
 	
-	private void checkGender_id(Gender gender, List<MyError> errorList) {
-		nullCheck("性別", gender, errorList);
-		if (isError) { return; }
+	private void checkGender_id(Gender gender) {
+		nullCheck("性別", gender);
+		if (isError) {
+			isError = false;
+			return;
+		}
 		String gender_id = gender.getId();
-		nullCheck("性別", gender_id, errorList);
+		nullCheck("性別", gender_id);
 		int result = new MyTool().parseInt(gender_id);
 		if (result < 0) {
 			MyError err = new MyError("性別コード", "数字ではありません。");
@@ -72,13 +86,17 @@ public class ParamCheck {
 		}
 	}
 	
-	private void checkBirthday(String birthday, List<MyError> errorList) {
-		nullCheck("誕生日", birthday, errorList);
-		if (isError) { return; }
-		if (birthday.matches("^[1-2][0-9]{3}/[0-9]{2}/[0-9]{2}$")) {
-			birthday = birthday.replaceAll("/", "-");
+	private void checkBirthday(String birthday) {
+		nullCheck("誕生日", birthday);
+		if (isError) {
+			isError = false;
+			return;
 		}
-		if (birthday.matches("^[1-2][0-9]{3}-[0-9]{2}-[0-9]{2}$")) {
+//		if (birthday.matches("^[1-2][0-9]{3}/[0-9]{1,2}/[0-9]{1,2}$")) {
+//			birthday = birthday.replaceAll("/", "-");
+//		}
+//		birthday = formatDate(birthday);
+		if (birthday.matches("^[1-2][0-9]{3}-[0-9]{1,2}-[0-9]{1,2}$")) {
 			;
 		} else {
 			MyError err = new MyError("誕生日", "正しい書式ではありません。");
@@ -92,9 +110,13 @@ public class ParamCheck {
 		}
 	}
 	
-	private void checkDept_id(Dept dept, List<MyError> errorList) {
+	private void checkDept_id(Dept dept) {
+		nullCheck("部署コード", dept);
+		if (isError) {
+			isError = false;
+			return;
+		}
 		String dept_id = dept.getId();
-		nullCheck("部署コード", dept_id, errorList);
 		if (dept_id.matches("^d[0-9]{2}$")) {
 			;
 		} else {
@@ -109,7 +131,7 @@ public class ParamCheck {
 	 * @param value 調べたい項目。
 	 * @param errorList MyErrorクラスのリスト。
 	 */
-	public void nullCheck(String key, String value, List<MyError> errorList) {
+	public void nullCheck(String key, String value) {
 		if (value == null || value.length() == 0) {
 			MyError err = new MyError(key, "文字が入力されていません。");
 			errorList.add(err);
@@ -117,7 +139,7 @@ public class ParamCheck {
 		}
 	}
 	
-	private void nullCheck(String key, Object obj, List<MyError> errorList) {
+	private void nullCheck(String key, Object obj) {
 		if (obj == null) {
 			MyError err = new MyError(key, "未入力です。");
 			errorList.add(err);
@@ -152,7 +174,7 @@ public class ParamCheck {
 			return false;
 		}
 	}
-
+	
 	public boolean isDateOld(String dateText) {
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	    sdf.setLenient(false);         // 日付チェックを厳密にする

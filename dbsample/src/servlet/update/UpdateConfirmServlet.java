@@ -22,7 +22,7 @@ public class UpdateConfirmServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MyError> errorList = new ArrayList<>();
 		Employee emp = new MyTool().getEmpByParameter(request);
-		new ParamCheck().validate(emp, errorList);
+		new ParamCheck(errorList).validate(emp);
 		
 		request.setAttribute("emp", emp);
 		String url = null;

@@ -46,7 +46,8 @@ public class MyTool {
 		String id = request.getParameter("id").toUpperCase();
 		String name = request.getParameter("name");
 		String gender_id = request.getParameter("gender_id");
-		String birthday = request.getParameter("birthday");
+		String _birthday = request.getParameter("birthday");
+		String birthday = formatDate(_birthday);
 		String dept_id = request.getParameter("dept_id");
 		Employee emp = new MyTool().makeEmp(id, name, gender_id, birthday, dept_id);
 		return emp;
@@ -68,4 +69,22 @@ public class MyTool {
 		int age = p.getYears();
 		return age;
 	}
+	
+	public String formatDate(String dateText) {
+		if (dateText == null || dateText.length() == 0) {
+			return "";
+		}
+		if (dateText.matches("^[1-2][0-9]{3}/[0-9]{1,2}/[0-9]{1,2}$")) {
+			dateText = dateText.replaceAll("/", "-");
+		}
+		String[] array = dateText.split("-");
+		String year = array[0];
+		String _month = "0" + array[1];
+		String month = _month.substring(_month.length() - 2);
+		String _day = "0" + array[2];
+		String day = _day.substring(_day.length() - 2);
+		return year + "-" + month + "-" + day;
+	}
+
+	
 }
