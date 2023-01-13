@@ -26,6 +26,10 @@ a:hover {
 .no-background {
 	background-color: transparent;
 }
+.error {
+	color: red;
+}
+
 
 main {
 	display: flex;
