@@ -7,7 +7,7 @@ public class FindUserByIdTest {
 
 	public static void main(String[] args) {
 		String id = "EMP001";
-		String pass = "1112";
+		String pass = "1111";
 		FindUserByIdLogic logic = new FindUserByIdLogic();
 		User user = logic.execute(id);
 		if (pass.equals(user.getPass())) {

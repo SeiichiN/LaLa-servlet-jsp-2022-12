@@ -76,7 +76,7 @@ public class ParamCheck {
 		nullCheck("誕生日", birthday, errorList);
 		if (isError) { return; }
 		if (birthday.matches("^[1-2][0-9]{3}/[0-9]{2}/[0-9]{2}$")) {
-			birthday.replaceAll("/", "-");
+			birthday = birthday.replaceAll("/", "-");
 		}
 		if (birthday.matches("^[1-2][0-9]{3}-[0-9]{2}-[0-9]{2}$")) {
 			;
