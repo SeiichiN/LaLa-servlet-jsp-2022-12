@@ -6,10 +6,10 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 public class Test {
-	static final String PATTERN = "yyyy/MM/dd";
+	static final String PATTERN = "G yyyy/MM/dd";
 
 	public static void main(String[] args) {
-		String text = "1999/09/31";
+		String text = "西暦 1999/09/09";
 		if (isDate(text)) {
 			System.out.println("正しい日付です。");
 		} else {
