@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 		nullCheck("id", id, errorList);
 		if (errorList.size() > 0) { isError = true; }
 		if (!isError && !checkId(id)) {
-			MyError error = new MyError("ログイン失敗", "ユーザー名・パスワードがちがいます。");
+			MyError error = new MyError("ログイン失敗", "ID・パスワードがちがいます。");
 			errorList.add(error);
 			isError = true;
 		}
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", user);
 			} else {
-				MyError error = new MyError("ログイン失敗", "ユーザー名・パスワードがちがいます。");
+				MyError error = new MyError("ログイン失敗", "ID・パスワードがちがいます。");
 				errorList.add(error);
 				isError = true;
 			}

@@ -117,7 +117,8 @@ footer {
 	width: 400px;
 }
 
-.edit-form input[type="text"] {
+.edit-form input[type="text"],
+.input-box {
 	width: 100%;
 	border: none;
 	outline: none;
@@ -159,6 +160,18 @@ th {
 .no-padding {
 	padding: 0;
 }
+
+/** パスワードボックス article-user.jsp **/
+#password-form {
+	display: flex;
+}
+.view-btn {
+	font-size: 8px;
+}
+.flex-area {
+	display: flex;
+}
+
 
 /*
  * asideのデザイン

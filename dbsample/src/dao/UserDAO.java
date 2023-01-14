@@ -11,11 +11,26 @@ import model.User;
 
 public class UserDAO {
 	private final String SQL_FIND_ALL =
-			"SELECT id, name, pass FROM dbuser";
+			" SELECT" +
+			"   du.id AS id," +
+			"   e.name AS name," +
+			"   du.pass AS pass" +
+			" FROM dbuser du" +
+			" INNER JOIN employee e" +
+			"   ON du.id = e.id" +
+			" ORDER BY du.id ASC";
 	
 	private final String SQL_FIND_USER_BY_ID =
-			"SELECT id, name, pass FROM dbuser"
-			+ " WHERE id = ?";
+			" SELECT" +
+			"   du.id AS id," +
+			"   e.name AS name," +
+			"   du.pass AS pass" +
+			" FROM dbuser du" +
+			" INNER JOIN employee e" +
+			"   ON du.id = e.id" +
+			" WHERE du.id = ?" +
+			" ORDER BY du.id ASC"; 
+			
 	
 	public List<User> findAll() {
 		List<User> userList = new ArrayList<>();
