@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		if (!isError) {
 			FindUserByIdLogic logic = new FindUserByIdLogic();
 			User user = logic.execute(id);
-			if (pass.equals(user.getPass())) {
+			if (user != null && pass.equals(user.getPass())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", user);
 			} else {

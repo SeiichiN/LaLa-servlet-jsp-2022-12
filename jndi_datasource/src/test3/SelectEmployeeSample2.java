@@ -29,7 +29,7 @@ import org.h2.jdbcx.JdbcDataSource;
 public class SelectEmployeeSample2 {
 
 	public static void main(String[] args) {
-		setDs();
+		// setDs();
 
 		Context ctx = null;
 		DataSource ds = null;
@@ -42,7 +42,8 @@ public class SelectEmployeeSample2 {
 		}
 		
 		
-		try (Connection conn = ds.getConnection()){			
+		try {
+			Connection conn = ds.getConnection();
 			String sql = "SELECT id, name, age FROM employee";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();

@@ -24,6 +24,7 @@
 					<button type="submit" class="no-border no-background search-img">${img_find}</button>
 				</form>
 			</li>
+			<li><a href="${pageContext.request.contextPath}/dbuser">管理ユーザー編集・登録</a></li>
 		</ul>
 	</nav>
 </aside>
