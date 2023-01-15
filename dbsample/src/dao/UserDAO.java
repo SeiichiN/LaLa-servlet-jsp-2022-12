@@ -30,7 +30,15 @@ public class UserDAO {
 			"   ON du.id = e.id" +
 			" WHERE du.id = ?" +
 			" ORDER BY du.id ASC"; 
-			
+				
+	private final String SQL_CREATE_USER =
+			" INSERT INTO dbuser (id, pass) VALUES ( ?, ? )";
+	
+	private final String SQL_UPDATE_USER =
+			" UPDATE dbuser SET pass = ? WHERE id = ?";
+
+	private final String SQL_EXISTS_ID =
+			"SELECT id FROM dbuser WHERE id = ?";
 	
 	public List<User> findAll() {
 		List<User> userList = new ArrayList<>();
@@ -64,6 +72,56 @@ public class UserDAO {
 			return null;
 		}
 		return user;
+	}
+	
+	public boolean create(User user) {
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_CREATE_USER);
+			pStmt.setString(1, user.getId());
+			pStmt.setString(2, user.getPass());
+			int result = pStmt.executeUpdate();
+			
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean update(User user) {
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_UPDATE_USER);
+			pStmt.setString(1, user.getPass());
+			pStmt.setString(2, user.getId());
+			int result = pStmt.executeUpdate();
+			
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean isExistsById(String id) {
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_EXISTS_ID);
+			pStmt.setString(1, id);
+			ResultSet rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
 	}
 	
 	private User getUser(ResultSet rs) throws SQLException {

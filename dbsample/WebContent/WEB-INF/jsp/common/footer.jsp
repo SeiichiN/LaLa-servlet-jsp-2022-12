@@ -4,4 +4,3 @@
 <footer>
 	<small>Copyright &copy; 2023 Seiichi Nukayama</small>
 </footer>
-<script src="${pageContext.request.contextPath}/js/script.js"></script>

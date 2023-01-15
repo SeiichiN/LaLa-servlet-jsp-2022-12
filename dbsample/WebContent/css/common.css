@@ -90,6 +90,9 @@ header {
 	margin-right: 20px;
 }
 
+#loginuser a {
+	color: #fff;
+}
 #logout a {
 	color: #eee;
 	text-decoration: underline;
@@ -159,17 +162,6 @@ th {
 }
 .no-padding {
 	padding: 0;
-}
-
-/** パスワードボックス article-user.jsp **/
-#password-form {
-	display: flex;
-}
-.view-btn {
-	font-size: 8px;
-}
-.flex-area {
-	display: flex;
 }
 
 

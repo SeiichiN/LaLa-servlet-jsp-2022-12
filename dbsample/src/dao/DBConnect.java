@@ -1,18 +1,25 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class DBConnect {
-	static final String JDBC_URL =
-			"jdbc:h2:tcp://localhost/~/dbsample";
-	static final String DB_USER = "sa";
-	static final String DB_PASS = "";
 	
 	static Connection connect() throws SQLException {
-		Connection conn = 
-				DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
-		return conn;
+		DataSource ds = null;
+		try {
+			Context initContext = new InitialContext();
+			Context envContext = (Context) initContext.lookup("java:/comp/env");
+			ds = (DataSource) envContext.lookup("jdbc/dbsample_db");
+		} catch (NamingException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return ds.getConnection();
 	}
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import model.Dept;
 import model.Employee;
 import model.Gender;
+import model.User;
 import model.logic.GetDeptByIdLogic;
 import model.logic.GetGenderByIdLogic;
 
@@ -84,6 +85,14 @@ public class MyTool {
 		String _day = "0" + array[2];
 		String day = _day.substring(_day.length() - 2);
 		return year + "-" + month + "-" + day;
+	}
+	
+	public User getUserByParam(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String pass = request.getParameter("pass");
+		User user = new User(id, name, pass);
+		return user;
 	}
 
 	

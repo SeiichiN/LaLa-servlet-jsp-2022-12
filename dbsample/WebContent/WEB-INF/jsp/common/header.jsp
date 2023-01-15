@@ -3,9 +3,11 @@
 <header>
 	<div id="header-inn" class="center-layout">
 		<h1 class=""><a href="${pageContext.request.contextPath}/list">社員情報マネージャー</a></h1>
-		<div id="logout">
-			<span id="loginuser">${loginUser.name}さん、ログイン中</span>
-			<a href="${pageContext.request.contextPath}/logout">ログアウト</a>
+		<div>
+			<span id="loginuser">
+			  <a href="${pageContext.request.contextPath}/dbmanager">${loginUser.name}さん</a>、ログイン中
+			</span>
+			<span id="logout"><a href="${pageContext.request.contextPath}/logout">ログアウト</a></span>
 		</div>
 	</div>
 </header>

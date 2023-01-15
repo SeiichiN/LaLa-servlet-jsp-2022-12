@@ -30,7 +30,7 @@
 	<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 	<main class="center-layout">
 		<article>
-			<h1>管理ユーザー編集</h1>
+			<h1>管理ユーザー編集・確認</h1>
 			<div class="input-form">
 				<table>
 					<tr>
@@ -59,9 +59,9 @@
 						<input type="submit" class="cansel-btn"	value="キャンセル">
 					</form> 
 					<input
-						type="submit" class="submit-btn" value="パスワード変更" formmethod="post"
+						type="submit" class="submit-btn" value="変更を確定" formmethod="post"
 						form="password-form"
-						formaction="${pageContext.request.contextPath}/changePassword">
+						formaction="${pageContext.request.contextPath}/changePasswordDone">
 				</div>
 		  </div>
 	

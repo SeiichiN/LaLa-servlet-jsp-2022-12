@@ -17,10 +17,13 @@
   	}
   	.input-title {
   		text-align: right;
-  		flex-basis: 100px;
+  		flex-basis: 200px;
   	}
   	.submit-line {
   		text-align: right;
+  	}
+  	.input-box {
+  		border: solid 1px #aaa;
   	}
   </style>
 </head>

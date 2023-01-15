@@ -26,7 +26,8 @@ public class LoginFilter extends HttpFilter implements Filter {
 		// 以下であれば、そのままログインページを表示する。
 		if (path.equals("/login") || 
 			path.startsWith("/css") || 
-			path.startsWith("/img")) {
+			path.startsWith("/img") ||
+			path.startsWith("/js")) {
 			;
 		} else {
 			// セッションスコープに loginUserビーンズがなければ、未ログインである。

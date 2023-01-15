@@ -6,15 +6,26 @@ WebContent/META-INF/context.xml
 ------------------------------------
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-<Resource name="jdbc/example_db" auth="Container"
-type="javax.sql.DataSource"
-username="sa" password=""
-driverClassName="org.h2.Driver"
-url="jdbc:h2:tcp://localhost/~/example" />
+  <Resource name="jdbc/example_db" auth="Container"
+            type="javax.sql.DataSource"
+            maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+            username="sa" password=""
+            driverClassName="org.h2.Driver"
+            url="jdbc:h2:tcp://localhost/~/example"
+            removeAbandoned="true"
+            removeAbandonedTimeout="300" />
 </Context>
 ------------------------------------
 
-"jdbc/example_db" という名前でデータベースへの接続を登録する。
+name: "jdbc/example_db" という名前でデータベースへの接続を登録する。
+auth: 接続する主体。Javaアプリが接続する場合は "Application"、Tomcatコンテナが接続する場合は "Container"。
+maxTotal: このプールから同時にわりあてることのできる接続の最大数。デフォルトは8。無制限の場合は -1 に設定。
+maxIdle: このプールで同時にアイドル状態になる接続の最大数。デフォルトは8。無制限の場合は -1 に設定。
+maxWaitMillis: データベース接続が利用可能になるまでの最大待機時間。単位はミリ秒。-1 に設定すると、無制限に待機する。デフォルトは -1。
+removeAbandoned: 放棄された接続をプールから削除するかどうか。デフォルトはfalse。
+removeAbandonedTimeout: 流用された接続が放棄されたと見なされるまでの秒数。デフォルトは300。
+
+最後の "removeAbandoned"オプションは、放棄された接続の削除機能である。「アプリケーションが接続を長時間プールに戻さない場合、その接続は放棄されたと呼ばれます。プールは、そのような接続を自動的に閉じて、プールから削除できます。これは、接続がリークしているアプリケーションの回避策です。」(『JNDI Resources HOW-TO / Apache Tomcat 8』https://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html)
 
 WebContent/WEB-INF/web.xml
 ------------------------------------
@@ -23,21 +34,31 @@ WebContent/WEB-INF/web.xml
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"                  
          version="4.0">
-         
-	 <description>h2sample</description>
-	 <resource-ref>
-	  <description>DB Connection</description>
-	  <res-ref-name>jdbc/example_db</res-ref-name>
-	  <res-type>javax.sql.DataSource</res-type>
-	  <res-auth>Container</res-auth>
-	 </resource-ref>         
+  
+  <description>h2sample</description>
+  <resource-ref>
+	<description>DB Connection</description>
+	<res-ref-name>jdbc/example_db</res-ref-name>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+  </resource-ref>         
 </web-app>
 ------------------------------------
 
-データベースからデータを取得するのは、以下のクラスである。
+description: "resource-ref"タグの説明。
+res-ref-name: JNDIリソースの名前を指定。指定された名前は java:comp/env の相対パスとして参照される。
+res-type: JNDIリソースのクラス型、インターフェース型を指定する。
+res-auth: リソースマネージャーに接続する主体。javaあぷりの場合は "Application"。Javaアプリを代表してTomcatコンテナが接続する場合は "Container"。
+
+  あと、オプションとして、"res-sharing-scope"タグがある。JNDIリソースとの接続が共有可能か指定する。"Shareable" もしくは "Unshareable"。
+
+  
+
+
+  データベースからデータを取得するのは、以下のクラスである。
 
 dao.EmployeeDAO.java
-------------------------------------
+  ------------------------------------
 package dao;
 
 import java.sql.Connection;
@@ -55,41 +76,46 @@ import javax.sql.DataSource;
 import model.Employee;
 
 public class EmployeeDAO {
-	public List<Employee> findAll() {
-		List<Employee> empList = new ArrayList<>();
-		DataSource ds = null;
-		try {
-			Context initContext = new InitialContext();
-			Context envContext = (Context) initContext.lookup("java:/comp/env");
-			ds = (DataSource) envContext.lookup("jdbc/example_db");
-		} catch (NamingException e) {
-			e.printStackTrace();
-			return null;
-		}
-		
-		try (Connection conn = ds.getConnection();) {
-			String sql = "select * from employee";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			ResultSet rs = pStmt.executeQuery();
-			while (rs.next()) {
-				String id = rs.getString("id");
-				String name = rs.getString("name");
-				int age = rs.getInt("age");
-				Employee emp = new Employee(id, name, age);
-				empList.add(emp);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return empList;
-	}
+  public List<Employee> findAll() {
+    List<Employee> empList = new ArrayList<>();
+    DataSource ds = null;
+    try {
+      Context initContext = new InitialContext();
+      Context envContext = (Context) initContext.lookup("java:/comp/env");
+      ds = (DataSource) envContext.lookup("jdbc/example_db");
+    } catch (NamingException e) {
+      e.printStackTrace();
+      return null;
+    }
+  
+    try (Connection conn = ds.getConnection();) {
+      String sql = "select * from employee";
+      PreparedStatement pStmt = conn.prepareStatement(sql);
+      ResultSet rs = pStmt.executeQuery();
+      while (rs.next()) {
+        String id = rs.getString("id");
+        String name = rs.getString("name");
+        int age = rs.getInt("age");
+        Employee emp = new Employee(id, name, age);
+        empList.add(emp);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return null;
+    }
+    return empList;
+  }
 }
-------------------------------------
+  ------------------------------------
 
 参考
+
 JNDI Datasource HOW-TO
 https://tomcat.apache.org/tomcat-8.0-doc/jndi-datasource-examples-howto.html#Installation
 
-
+JNDI Resources HOW-TO
+https://tomcat.apache.org/tomcat-8.0-doc/jndi-resources-howto.html
+  
+JDBC接続
+http://www.javaroad.jp/opensource/js_tomcat8.htm  
 

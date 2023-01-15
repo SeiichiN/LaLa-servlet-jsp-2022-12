@@ -79,6 +79,8 @@ public class EmployeeDAO {
 			+ " WHERE e.dept_id = ?"
 			+ " ORDER BY e.id ASC";
 	
+	private final String SQL_FIND_NAME_BY_ID =
+			"SELECT name FROM employee WHERE id = ?";
 	
 	private final String SQL_CREATE =
 			"INSERT INTO employee " 
@@ -170,6 +172,22 @@ public class EmployeeDAO {
 		}
 		
 		return empList;
+	}
+	
+	public String findNameById(String id) {
+		String name = null;
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_FIND_NAME_BY_ID);
+			pStmt.setString(1, id);
+			ResultSet rs = pStmt.executeQuery();
+			if (rs.next()) {
+				name = rs.getString("name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return name;
 	}
 	
 	public boolean create(Employee emp) {

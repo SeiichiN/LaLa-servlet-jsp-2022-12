@@ -30,38 +30,34 @@
 	<jsp:include page="/WEB-INF/jsp/common/header.jsp" />
 	<main class="center-layout">
 		<article>
-			<h1>管理ユーザー編集</h1>
+			<h1>管理ユーザー編集・パスワード設定</h1>
+			<p>${msg}</p>
 			<div class="input-form">
 				<table>
 					<tr>
 						<th>ID</th>
-						<td>${loginUser.id}</td>
+						<td>${newUser.id}</td>
 					</tr>			
 					<tr>
 						<th>名前</th>
-			  		<td>${loginUser.name}</td>
+			  		<td>${newUser.name}</td>
 					</tr>
 					<tr>
 						<th>パスワード</th>
-			  		<td class="password-td">
-				  		<form id="password-form">
-				  			<input type="password" name="pass" class="input-box password-box"
-				  			       value="<c:out value="${loginUser.pass}" />">
+				  	<td>
+				  		<form id="password-form" method="post"
+				  		       action="${pageContext.request.contextPath}/setPwNewUserDone">
+					  		<input type="password" name="pass" class="input-box password-box"
+				  			       value="<c:out value="${newUser.pass}" />">
 				  			<span class="view-btn">(*)</span>
-				  			<input type="hidden" name="id" value="${loginUser.id}">
-				  			<input type="hidden" name="name" value="${loginUser.name}">
-				  		</form>
-			  		</td>
+				  			<input type="hidden" name="id" value="${newUser.id}">
+				  			<input type="hidden" name="name" value="${newUser.name}">
+			  			</form>
+				  	</td>
 					</tr>
 			  </table>
 				<div class="btn-area flex-area">
-					<form action="${pageContext.request.contextPath}/list" method="get">
-						<input type="submit" class="cansel-btn"	value="キャンセル">
-					</form> 
-					<input
-						type="submit" class="submit-btn" value="パスワード変更" formmethod="post"
-						form="password-form"
-						formaction="${pageContext.request.contextPath}/changePassword">
+					<input form="password-form" type="submit" class="submit-btn"	value="登録">
 				</div>
 		  </div>
 	
