@@ -15,7 +15,14 @@ public class CreateEmpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Employee emp = new Employee("EMP009", "斎藤 香", 32);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String id = request.getParameter("id").toUpperCase();
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		Employee emp = new Employee(id, name, age);
 		CreateEmpLogic logic = new CreateEmpLogic();
 		String msg = null;
 		if (logic.execute(emp)) {
@@ -26,10 +33,6 @@ public class CreateEmpServlet extends HttpServlet {
 		request.setAttribute("msg", msg);
 		String url = "/WEB-INF/jsp/createResult.jsp";
 		request.getRequestDispatcher(url).forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 	}
 
 }

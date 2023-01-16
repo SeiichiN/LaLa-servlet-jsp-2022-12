@@ -99,7 +99,7 @@ public class EmployeeDAO {
 				}
 				if (isError) { throw new SQLException("わざとエラー"); }
 				// 2つめの登録処理
-				pStmt2.setString(1, "EMP010");
+				pStmt2.setString(1, "EMP999");
 				pStmt2.setString(2, "猿飛 佐助");
 				pStmt2.setInt(3, 24);
 				int result2 = pStmt2.executeUpdate();
