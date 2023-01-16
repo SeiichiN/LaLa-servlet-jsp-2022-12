@@ -5,13 +5,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>社員管理マネージャー</title>
+	<title>社員情報マネージャー</title>
 	<link rel="stylesheet" 
 	      href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 	<header>
-		<h1 class="center-layout">社員管理マネージャー</h1>
+		<h1 class="center-layout">社員情報マネージャー</h1>
 	</header>
 	<article class="center-layout">
 		<table>
@@ -19,25 +19,18 @@
 				<th>ID</th>
 				<th>名前</th>
 				<th>年齢</th>
-				<th class="no-border"></th>
-				<th class="no-border"></th>
 			</tr>
 			<c:forEach var="emp" items="${empList}">
 				<tr>
 					<td>${emp.id}</td>
 					<td>${emp.name}</td>
 					<td>${emp.age}</td>
-					<td class="no-border">編集</td>
-					<td class="no-border">
-						<form action="${pageContext.request.contextPath}/delete" method="post">
-							<input type="hidden" name="id" value="${emp.id}">
-							<button type="submit"
-							       class="submit-btn no-border no-background">削除</button>
-						</form>
-					</td>
 				</tr>
 			</c:forEach>
 		</table>
+		<form action="${pageContext.request.contextPath}/new" method="GET">
+			<input type="submit" value="新規メンバー登録">
+		</form>
 	</article>
 	<footer>
 		<small>&copy; 2023 Seiichi Nukayama</small>

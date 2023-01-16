@@ -192,15 +192,23 @@ public class EmployeeDAO {
 	
 	public boolean create(Employee emp) {
 		try (Connection conn = DBConnect.connect()) {
-			PreparedStatement pStmt = conn.prepareStatement(SQL_CREATE);
-			pStmt.setString(1, emp.getId());
-			pStmt.setString(2, emp.getName());
-			pStmt.setString(3, emp.getGender().getId());
-			pStmt.setString(4, emp.getBirthday());
-			pStmt.setString(5, emp.getDept().getId());
-			int result = pStmt.executeUpdate();
-			if (result != 1) {
-				return false;
+			conn.setAutoCommit(false);
+			try (PreparedStatement pStmt = conn.prepareStatement(SQL_CREATE);) {
+				pStmt.setString(1, emp.getId());
+				pStmt.setString(2, emp.getName());
+				pStmt.setString(3, emp.getGender().getId());
+				pStmt.setString(4, emp.getBirthday());
+				pStmt.setString(5, emp.getDept().getId());
+				int result = pStmt.executeUpdate();
+				if (result != 1) {
+					conn.rollback();
+					return false;
+				}
+				conn.commit();
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				conn.rollback();
+				throw e;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -211,11 +219,19 @@ public class EmployeeDAO {
 
 	public boolean deleteById(String id) {
 		try (Connection conn = DBConnect.connect()) {
-			PreparedStatement pStmt = conn.prepareStatement(SQL_DELETE);
-			pStmt.setString(1, id);
-			int result = pStmt.executeUpdate();
-			if (result != 1) {
-				return false;
+			conn.setAutoCommit(false);
+			try (PreparedStatement pStmt = conn.prepareStatement(SQL_DELETE);) {
+				pStmt.setString(1, id);
+				int result = pStmt.executeUpdate();
+				if (result != 1) {
+					conn.rollback();
+					return false;
+				}
+				conn.commit();
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				conn.rollback();
+				throw e;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -226,16 +242,23 @@ public class EmployeeDAO {
 	
 	public boolean update(Employee emp) {
 		try (Connection conn = DBConnect.connect()) {
-			PreparedStatement pStmt = conn.prepareStatement(SQL_UPDATE);
-			pStmt.setString(1, emp.getName());
-			pStmt.setString(2, emp.getGender().getId());
-			pStmt.setString(3, emp.getBirthday());
-			pStmt.setString(4, emp.getDept().getId());
-			pStmt.setString(5, emp.getId());
-			int result = pStmt.executeUpdate();
-			
-			if (result != 1) {
-				return false;
+			conn.setAutoCommit(false);
+			try (PreparedStatement pStmt = conn.prepareStatement(SQL_UPDATE);) {
+				pStmt.setString(1, emp.getName());
+				pStmt.setString(2, emp.getGender().getId());
+				pStmt.setString(3, emp.getBirthday());
+				pStmt.setString(4, emp.getDept().getId());
+				pStmt.setString(5, emp.getId());
+				int result = pStmt.executeUpdate();
+				if (result != 1) {
+					conn.rollback();
+					return false;
+				}
+				conn.commit();
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				conn.rollback();
+				throw e;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

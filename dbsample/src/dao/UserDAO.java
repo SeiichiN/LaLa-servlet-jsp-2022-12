@@ -76,14 +76,21 @@ public class UserDAO {
 	
 	public boolean create(User user) {
 		try (Connection conn = DBConnect.connect()) {
-			PreparedStatement pStmt = conn.prepareStatement(SQL_CREATE_USER);
-			pStmt.setString(1, user.getId());
-			pStmt.setString(2, user.getPass());
-			int result = pStmt.executeUpdate();
-			
-			if (result != 1) {
-				return false;
+			conn.setAutoCommit(false);
+			try (PreparedStatement pStmt = conn.prepareStatement(SQL_CREATE_USER);) {
+				pStmt.setString(1, user.getId());
+				pStmt.setString(2, user.getPass());
+				int result = pStmt.executeUpdate();
+				if (result != 1) {
+					conn.rollback();
+					return false;
+				}
+			} catch (SQLException e) {
+				conn.rollback();
+				throw e;
 			}
+			conn.commit();
+			conn.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -93,14 +100,21 @@ public class UserDAO {
 	
 	public boolean update(User user) {
 		try (Connection conn = DBConnect.connect()) {
-			PreparedStatement pStmt = conn.prepareStatement(SQL_UPDATE_USER);
-			pStmt.setString(1, user.getPass());
-			pStmt.setString(2, user.getId());
-			int result = pStmt.executeUpdate();
-			
-			if (result != 1) {
-				return false;
+			conn.setAutoCommit(false);
+			try (PreparedStatement pStmt = conn.prepareStatement(SQL_UPDATE_USER);) {
+				pStmt.setString(1, user.getPass());
+				pStmt.setString(2, user.getId());
+				int result = pStmt.executeUpdate();
+				if (result != 1) {
+					conn.rollback();
+					return false;
+				}
+			} catch (SQLException e) {
+				conn.rollback();
+				throw e;
 			}
+			conn.commit();
+			conn.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
