@@ -14,8 +14,6 @@ import model.Employee;
 import model.Gender;
 import model.MyError;
 import model.logic.FindEmpByIdLogic;
-import model.logic.GetDeptByIdLogic;
-
 
 public class ParamCheck {
 	private List<MyError> errorList;
