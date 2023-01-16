@@ -14,6 +14,7 @@ import model.Employee;
 import model.Gender;
 import model.MyError;
 import model.logic.FindEmpByIdLogic;
+import model.logic.GetDeptByIdLogic;
 
 
 public class ParamCheck {
@@ -116,6 +117,8 @@ public class ParamCheck {
 			isError = false;
 			return;
 		}
+		
+		
 		String dept_id = dept.getId();
 		if (dept_id.matches("^d[0-9]{2}$")) {
 			;
@@ -124,7 +127,7 @@ public class ParamCheck {
 			errorList.add(err);
 		}
 	}
-
+	
 	/**
 	 * valueがnullでないか、チェックする。
 	 * @param key valueの項目名。エラー表示のときに、項目名も表示するとわかりやすくなる。
