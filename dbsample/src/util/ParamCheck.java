@@ -29,7 +29,10 @@ public class ParamCheck {
 	
 	private void checkId(String id) {
 		nullCheck("ID", id);
-		if (isError) { return; }
+		if (isError) {
+			isError = false;
+			return; 
+		}
 		if (id.matches("^EMP[0-9]{3}$")) {
 			;
 		} else {		
@@ -50,7 +53,10 @@ public class ParamCheck {
 	
 	private void checkName(String name) {
 		nullCheck("名前", name);
-		if (isError) { return; }
+		if (isError) {
+			isError = false;
+			return;
+		}
 		if (name.length() > 30) {
 			MyError err = 
 					new MyError("名前", "長すぎます。");
@@ -60,7 +66,10 @@ public class ParamCheck {
 	
 	private void checkGender(Gender gender) {
 		nullCheck("性別", gender);
-		if (isError) { return; }
+		if (isError) {
+			isError = false;
+			return; 
+		}
 		String gender_id = gender.getId();
 		int result = new MyTool().parseInt(gender_id);
 		if (result < 0) {
@@ -71,10 +80,11 @@ public class ParamCheck {
 	
 	private void checkBirthday(String birthday) {
 		nullCheck("誕生日", birthday);
-		// if (isError) { return; }
-		if (birthday.matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$")) {
-			birthday = birthday.replaceAll("/",  "-");
+		if (isError) {
+			isError = false;
+			return;
 		}
+
 		if (birthday.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$")) {
 			;   // OK
 		} else {

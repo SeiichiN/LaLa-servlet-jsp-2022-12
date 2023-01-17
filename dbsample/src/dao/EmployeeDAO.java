@@ -43,6 +43,11 @@ public class EmployeeDAO {
 			"INNER JOIN dept d " +
 			"  ON e.dept_id = d.id " +
 			" WHERE e.id = ?";
+
+	private final String SQL_CREATE =
+			"INSERT INTO employee" +
+	        "  (id, name, gender_id, birthday, dept_id) " +
+	        " VALUES (?, ?, ?, ?, ?)";
 	
 	public List<Employee> findAll() {
 		List<Employee> empList = new ArrayList<>();
@@ -82,6 +87,27 @@ public class EmployeeDAO {
 		return emp;
 	}  // findEmpById() end
 
+	public boolean create(Employee emp) {
+		
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt =
+					conn.prepareStatement(SQL_CREATE);
+			pStmt.setString(1, emp.getId());
+			pStmt.setString(2, emp.getName());
+			pStmt.setString(3, emp.getGender().getId());
+			pStmt.setString(4, emp.getBirthday());
+			pStmt.setString(5, emp.getDept().getId());
+			int result = pStmt.executeUpdate();
+			
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	
 	private Employee getEmp(ResultSet rs) throws SQLException {
 		String eid = rs.getString("eid");
