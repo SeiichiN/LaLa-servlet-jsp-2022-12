@@ -30,12 +30,13 @@ build/
 bin/
 .classpath
 .project
-META-INF/
+# META-INF/
 
 # necessary
 !jstl-api-1.2.jar
 !jstl-impl-1.2.jar
 !json-*.jar
+!content.xml
 
 # emacs
 *~
