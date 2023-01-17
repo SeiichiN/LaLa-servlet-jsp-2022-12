@@ -172,7 +172,7 @@ aside h1 {
 	margin-bottom: 10px;
 }
 
-aside li {
+aside ul.menu > li {
 	margin-bottom: 10px;
 }
 
@@ -181,11 +181,6 @@ aside li {
 	display: flex;
 	width: 100%;
 }
-
-/* .search-box  {  */
-/*   	width: calc(100% - 36px); */
- 	
-/* } */
 
 .search-box {
 	width: 100%;
@@ -208,4 +203,36 @@ aside li {
 
 .img-find {
 	width: 20px;
+}
+
+.out-item {
+	position: relative;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.in-menu {
+	display: none;
+	position: absolute;
+	left: 20px;
+	
+}
+
+.out-item:hover ul {
+	display: block;
+}
+
+.in-menu li {
+	border-bottom: solid 1px #aaa;
+}
+
+.in-menu a {
+	display: block;
+	padding: 0 30px;
+	background-color: #fff;
+	text-decoration: none;
+}
+
+.in-menu a:hover {
+	background-color: #eee;
 }

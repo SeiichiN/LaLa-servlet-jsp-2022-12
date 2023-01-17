@@ -4,7 +4,7 @@
 <aside>
 	<h1>メニュー</h1>
 	<nav>
-		<ul>
+		<ul class="menu">
 			<li><a href="${pageContext.request.contextPath}/create">新規社員情報登録</a></li>
 			<li>
 				<form action="${pageContext.request.contextPath}/findName" method="post" 
@@ -24,7 +24,12 @@
 					<button type="submit" class="no-border no-background search-img">${img_find}</button>
 				</form>
 			</li>
-			<li><a href="${pageContext.request.contextPath}/createUser">管理ユーザー登録</a></li>
+			<li class="out-item">管理ユーザー
+				<ul class="in-menu">
+					<li><a href="${pageContext.request.contextPath}/createUser">登録</a></li>
+					<li><a href="${pageContext.request.contextPath}/userList">一覧</a></li>
+				</ul>
+			</li>
 		</ul>
 	</nav>
 </aside>
