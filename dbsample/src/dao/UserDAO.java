@@ -40,6 +40,9 @@ public class UserDAO {
 	private final String SQL_EXISTS_ID =
 			"SELECT id FROM dbuser WHERE id = ?";
 	
+	private final String SQL_DELETE_BY_ID =
+			"DELETE FROM dbuser WHERE id = ?";
+	
 	public List<User> findAll() {
 		List<User> userList = new ArrayList<>();
 		
@@ -136,6 +139,22 @@ public class UserDAO {
 			return false;
 		}
 		return false;
+	}
+	
+	public boolean deleteById(String id) {
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_DELETE_BY_ID);
+			pStmt.setString(1, id);
+			int result = pStmt.executeUpdate();
+			
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	private User getUser(ResultSet rs) throws SQLException {

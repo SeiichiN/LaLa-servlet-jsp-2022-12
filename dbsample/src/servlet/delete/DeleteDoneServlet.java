@@ -28,4 +28,7 @@ public class DeleteDoneServlet extends HttpServlet {
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
+	private void deleteIfExistsOnDept(String id) {
+		
+	}
 }

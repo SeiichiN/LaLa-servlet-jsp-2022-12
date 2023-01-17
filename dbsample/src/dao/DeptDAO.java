@@ -14,6 +14,8 @@ public class DeptDAO {
 			"SELECT id, name FROM dept ORDER BY id ASC";
 	private final String SQL_FIND_BY_ID = 
 			"SELECT name FROM dept WHERE id = ?";
+	private final String SQL_DELETE_BY_ID =
+			"DELETE FROM dept WHERE id = ?";
 	
 	public List<Dept> findAll() {
 		List<Dept> deptList= new ArrayList<>();
@@ -52,5 +54,21 @@ public class DeptDAO {
 			return null;
 		}
 		return dept;
+	}
+	
+	public boolean deleteById(String id) {
+		try (Connection conn = DBConnect.connect()) {
+			PreparedStatement pStmt = conn.prepareStatement(SQL_DELETE_BY_ID);
+			pStmt.setString(1, id);
+			int result = pStmt.executeUpdate();
+			
+			if (result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }
