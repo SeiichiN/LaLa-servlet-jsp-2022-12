@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
-import model.logic.FindNameByIdLogic;
-import model.logic.IsExistsIdLogic;
+import model.logic.employee.FindNameByIdLogic;
+import model.logic.user.IsExistsIdLogic;
 
 @WebServlet("/createUser")
 public class CreateUserServlet extends HttpServlet {

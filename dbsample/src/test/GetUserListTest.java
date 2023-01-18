@@ -3,7 +3,7 @@ package test;
 import java.util.List;
 
 import model.User;
-import model.logic.GetUserListLogic;
+import model.logic.user.GetUserListLogic;
 
 public class GetUserListTest {
 

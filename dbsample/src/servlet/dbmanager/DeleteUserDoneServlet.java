@@ -1,34 +1,30 @@
-package servlet.delete;
+package servlet.dbmanager;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.logic.employee.DeleteEmpByIdLogic;
+import model.logic.user.DeleteUserByIdLogic;
 
-@WebServlet("/deleteDone")
-public class DeleteDoneServlet extends HttpServlet {
+@WebServlet("/deleteUserDone")
+public class DeleteUserDoneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		DeleteEmpByIdLogic logic = new DeleteEmpByIdLogic();
-		String msg = "";
+		DeleteUserByIdLogic logic = new DeleteUserByIdLogic();
+		String msg = null;
 		if (logic.execute(id)) {
-			msg = name + "さんの情報を削除しました。";
+			msg = "ユーザーを削除しました。";
 		} else {
-			msg = name + "さんの情報を削除できませんでした。";
+			msg = "削除に失敗しました。";
 		}
-		request.setAttribute("msg", msg);
-		String url = "/WEB-INF/jsp/delete/deleteResult.jsp";
+		String url = "/WEB-INF/jsp/manager/deleteUserDone.jsp";
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 
-	private void deleteIfExistsOnDept(String id) {
-		
-	}
 }

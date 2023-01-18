@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Employee;
-import model.logic.FindEmpByNameLogic;
 import model.MyError;
+import model.logic.employee.FindEmpByNameLogic;
 
 @WebServlet("/findName")
 public class FindEmpServlet extends HttpServlet {

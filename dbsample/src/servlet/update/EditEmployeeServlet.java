@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Employee;
-import model.logic.FindEmpByIdLogic;
+import model.logic.employee.FindEmpByIdLogic;
 
 @WebServlet("/edit")
 public class EditEmployeeServlet extends HttpServlet {

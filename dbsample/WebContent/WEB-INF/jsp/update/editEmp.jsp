@@ -28,7 +28,8 @@
 					<table>
 						<tr>
 							<th class="no-border">ID</th>
-							<td class="no-border"><c:out value="${emp.id}" /></td>
+							<td class="no-border"><c:out value="${emp.id}" />
+							</td>
 						</tr>
 						<tr>
 							<th>名前</th>
@@ -69,6 +70,7 @@
 							</td>
 						</tr>
 					</table>
+				    <input type="hidden" name="id" value="${emp.id}">
 					<div class="btn-area">
 						<input type="submit" class="cansel-btn" value="キャンセル" formmethod="get" 
 						       formaction="${pageContext.request.contextPath}/list">

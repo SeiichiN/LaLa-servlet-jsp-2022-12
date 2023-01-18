@@ -13,7 +13,7 @@ import model.Dept;
 import model.Employee;
 import model.Gender;
 import model.MyError;
-import model.logic.FindEmpByIdLogic;
+import model.logic.employee.FindEmpByIdLogic;
 
 public class ParamCheck {
 	private List<MyError> errorList;
@@ -23,8 +23,10 @@ public class ParamCheck {
 		this.errorList = errorList;
 	}
 	
-	public void validate(Employee emp) {
-		checkId(emp.getId());
+	public void validate(Employee emp, String mode) {
+		if (mode.equals("create")) {
+			checkId(emp.getId());
+		}
 		checkName(emp.getName());
 		checkGender_id(emp.getGender());
 		checkBirthday(emp.getBirthday());

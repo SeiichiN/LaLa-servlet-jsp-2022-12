@@ -1,4 +1,4 @@
-package model.logic;
+package model.logic.employee;
 
 import java.util.List;
 

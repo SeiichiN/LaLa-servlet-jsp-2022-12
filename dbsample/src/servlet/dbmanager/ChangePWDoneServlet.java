@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.User;
-import model.logic.UpdateUserLogic;
+import model.logic.user.UpdateUserLogic;
 import util.MyTool;
 
 @WebServlet("/changePasswordDone")

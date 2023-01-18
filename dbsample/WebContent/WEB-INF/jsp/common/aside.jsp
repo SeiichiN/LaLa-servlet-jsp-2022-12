@@ -26,8 +26,9 @@
 			</li>
 			<li class="out-item">管理ユーザー
 				<ul class="in-menu">
-					<li><a href="${pageContext.request.contextPath}/createUser">登録</a></li>
 					<li><a href="${pageContext.request.contextPath}/userList">一覧</a></li>
+					<li><a href="${pageContext.request.contextPath}/createUser">登録</a></li>
+					<li><a href="${pageContext.request.contextPath}/deleteUser">削除</a></li>
 				</ul>
 			</li>
 		</ul>

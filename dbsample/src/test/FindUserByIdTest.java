@@ -1,7 +1,7 @@
 package test;
 
 import model.User;
-import model.logic.FindUserByIdLogic;
+import model.logic.user.FindUserByIdLogic;
 
 public class FindUserByIdTest {
 

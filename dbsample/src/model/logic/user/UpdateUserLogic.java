@@ -1,4 +1,4 @@
-package model.logic;
+package model.logic.user;
 
 import dao.UserDAO;
 import model.User;

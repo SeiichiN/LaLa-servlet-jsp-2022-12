@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Employee;
-import model.logic.GetEmpListLogic;
+import model.logic.employee.GetEmpListLogic;
 
 @WebServlet("/list")
 public class GetEmpListServlet extends HttpServlet {

@@ -22,7 +22,8 @@ public class CreateConfirmServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<MyError> errorList = new ArrayList<>();
 		Employee emp = new MyTool().getEmpByParameter(request);
-		new ParamCheck(errorList).validate(emp);
+		String mode = "create";
+		new ParamCheck(errorList).validate(emp, mode);
 		
 		request.setAttribute("emp", emp);
 		String url = null;

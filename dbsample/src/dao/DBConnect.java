@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 public class DBConnect {
 	
 	static Connection connect() throws SQLException {
+		
 		DataSource ds = null;
 		try {
 			Context initContext = new InitialContext();

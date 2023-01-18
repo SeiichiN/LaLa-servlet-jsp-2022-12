@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Employee;
-import model.logic.UpdateEmployeeLogic;
+import model.logic.employee.UpdateEmployeeLogic;
 import util.MyTool;
 
 @WebServlet("/updateDone")

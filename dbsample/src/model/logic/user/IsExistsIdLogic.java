@@ -1,10 +1,10 @@
-package model.logic;
+package model.logic.user;
 
 import dao.UserDAO;
 
-public class DeleteUserByIdLogic {
+public class IsExistsIdLogic {
 	public boolean execute(String id) {
 		UserDAO dao = new UserDAO();
-		return dao.deleteById(id);
+		return dao.isExistsById(id);
 	}
 }

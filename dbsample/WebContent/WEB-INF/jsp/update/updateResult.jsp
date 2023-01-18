@@ -16,7 +16,7 @@
 			<article>
 				<h1>社員情報更新</h1>
 				<p><c:out value="${msg}" /></p>
-				<p><a href="${pageContext.request.contextPath}/employee">
+				<p><a href="${pageContext.request.contextPath}/list">
 				    <button type="button">一覧へ</button></a>
 				</p>									
 			</article>

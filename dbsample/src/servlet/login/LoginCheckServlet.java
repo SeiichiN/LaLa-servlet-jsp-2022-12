@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import model.MyError;
 import model.User;
-import model.logic.FindUserByIdLogic;
+import model.logic.user.FindUserByIdLogic;
 
 @WebServlet("/loginCheck")
 public class LoginCheckServlet extends HttpServlet {

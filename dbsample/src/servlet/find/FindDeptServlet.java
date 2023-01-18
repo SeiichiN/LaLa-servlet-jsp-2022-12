@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Employee;
-import model.logic.FindEmpByDeptIdLogic;
+import model.logic.employee.FindEmpByDeptIdLogic;
 
 @WebServlet("/findDept")
 public class FindDeptServlet extends HttpServlet {

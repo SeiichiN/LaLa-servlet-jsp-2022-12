@@ -3,7 +3,7 @@ package test;
 import java.util.List;
 
 import model.Employee;
-import model.logic.GetEmpListLogic;
+import model.logic.employee.GetEmpListLogic;
 
 public class GetEmpListTest {
 

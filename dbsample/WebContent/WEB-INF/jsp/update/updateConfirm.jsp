@@ -6,8 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>社員一覧</title>
-	<link href="/chap13/css/common.css" rel="stylesheet">
-	<link href="/chap13/css/create-page.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/create-page.css" rel="stylesheet">
 </head>
 <body>
 	<div id="wrap">
@@ -54,7 +54,7 @@
 					<input type="hidden" name="name" value="${emp.name}">
 					<input type="hidden" name="gender_id" value="${emp.gender.id}">
 					<input type="hidden" name="birthday" value="${emp.birthday}">
-					<input type="hidden" name="dept_id" value="${emp.dept_id}">
+					<input type="hidden" name="dept_id" value="${emp.dept.id}">
 					
 					<div class="btn-area">
 						<input type="submit" class="cansel-btn" value="キャンセル"

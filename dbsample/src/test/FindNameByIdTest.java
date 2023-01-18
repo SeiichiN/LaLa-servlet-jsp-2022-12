@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.logic.FindNameByIdLogic;
+import model.logic.employee.FindNameByIdLogic;
 
 /**
  * Servlet implementation class FindNameByIdTest
